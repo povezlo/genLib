@@ -4,6 +4,7 @@ interface ICommonInfo {
     duration: number;
     status: string;
     previewImageLink: string;
+    meta: IMetaPreview;
 }
 
 export interface ICoursesPreview extends ICommonInfo  {
@@ -11,7 +12,6 @@ export interface ICoursesPreview extends ICommonInfo  {
             launchDate: string;
             description: string;
             rating: number;
-            meta: IMetaPreview;
             lessonsCount: number;
             containsLockedLessons: boolean;
 }
@@ -36,7 +36,6 @@ interface ILesson extends ICommonInfo {
     order: number;
     type: string;
     link: string;
-    meta: any | null;
 }
 
 export interface IPreviewCoursesResponse {

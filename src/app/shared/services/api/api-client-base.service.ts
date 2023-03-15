@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { IHttpParams } from 'src/app/interfaces';
+import { IHttpParams } from 'src/app/shared/interfaces';
 
 @Injectable({
   providedIn: 'root'

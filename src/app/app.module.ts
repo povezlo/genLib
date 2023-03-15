@@ -5,9 +5,12 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TokenInterceptor } from './interceptors';
+import { TokenInterceptor } from './shared';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HeaderModule } from './header/header.module';
+import { FooterModule } from './footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HeaderModule,
+    FooterModule,
+    MatSidenavModule
   ],
     providers: [
     {

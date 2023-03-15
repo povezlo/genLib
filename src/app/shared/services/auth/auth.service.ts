@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { TokenService } from '../token/token.service';
-import { ITokenResponse } from 'src/app/interfaces';
+import { ITokenResponse } from 'src/app/shared/interfaces';
 import { ApiClientBaseService } from '../api/api-client-base.service';
 
 @Injectable({

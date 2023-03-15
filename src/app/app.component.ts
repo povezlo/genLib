@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, } from '@angular/core';
-import { AuthService, CoursesService } from './services';
-import { Observable, Subscription } from 'rxjs';
-import { IPreviewCoursesResponse } from './interfaces';
+import { AuthService } from './shared';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +8,11 @@ import { IPreviewCoursesResponse } from './interfaces';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  courses$: Observable<IPreviewCoursesResponse> | null = null;
-
   private readonly subscription = new Subscription();
 
-  constructor(private authService: AuthService, private courses: CoursesService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.courses$ = this.courses.getPreviewCourses();
     this.autoLogin();
   }
 
