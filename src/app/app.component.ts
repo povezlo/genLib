@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, } from '@angular/core';
-import { AuthService } from './services';
+import { AuthService, CoursesService } from './services';
 import { Observable, Subscription } from 'rxjs';
 import { IPreviewCoursesResponse } from './interfaces';
 
@@ -13,9 +13,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private readonly subscription = new Subscription();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private courses: CoursesService) {}
 
   ngOnInit(): void {
+    this.courses$ = this.courses.getPreviewCourses();
     this.autoLogin();
   }
 

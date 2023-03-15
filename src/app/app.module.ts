@@ -6,7 +6,6 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TokenInterceptor } from './interceptors';
-import { AuthService, TokenService } from './services'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 
