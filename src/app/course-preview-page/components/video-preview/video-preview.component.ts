@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ICourseVideoPreview } from 'src/app/shared';
-
 @Component({
   selector: 'app-video-preview',
   templateUrl: './video-preview.component.html',

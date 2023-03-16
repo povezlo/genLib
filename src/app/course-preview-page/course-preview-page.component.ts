@@ -4,7 +4,6 @@ import { Observable } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators';
 import { CoursesService } from '../shared';
 import { ICoursePreviewResponse } from '../shared';
-
 @Component({
   selector: 'app-course-preview-page',
   templateUrl: './course-preview-page.component.html',

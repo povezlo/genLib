@@ -15,32 +15,9 @@
         
         <section>
             <h2>Lessons</h2>
-            <ng-container *ngIf="course?.lessons as lessons; noLessons">
-                <ul *ngFor="let lesson of lessons">
-                    <li>Title: {{lesson.title}}</li>
-                    <li>Duration: {{lesson.duration}}</li>
-                    <li>Video:
-                    <video class="video-player" width="640" height="360" controls>
-                        <source [src]="lesson.link" type="application/x-mpegURL">
-                        Ваш браузер не поддерживает HTML5 видео.
-                    </video>
-                </li>
-                    <li>Status: {{lesson.status}}</li><mat-list-item>Order: {{lesson.order}}</mat-list-item>
-                    <li>
-                        <img 
-                            mat-card-image
-                            [ngSrc]="lesson.previewImageLink + '/' + lesson.order + '.webp'"
-                            [alt]="lesson.title"
-                             width="400"
-                             height="200"
-                        >
-                    </li>
-                    <li>Order: {{lesson.order}}</li>
-                    <li>Type: {{lesson.type}}</li>
-                </ul>
-            </ng-container>
-            <ng-template #noLessons>No lessons</ng-template>
-
+             <ul *ngFor="let lesson of course?.lessons">
+                <app-video-lesson [lesson]="lesson"></app-video-lesson>
+              </ul>
         </section>
         <mat-divider></mat-divider>
 

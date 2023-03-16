@@ -32,7 +32,7 @@ export interface ICourseVideoPreview {
     previewImageLink: string;
 }
 
-interface ILesson extends ICommonInfo {
+export interface ILesson extends ICommonInfo {
     order: number;
     type: string;
     link: string;

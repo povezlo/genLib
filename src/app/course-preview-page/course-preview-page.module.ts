@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { VideoPreviewComponent } from './components';
 import { CoursePreviewPageComponent } from './course-preview-page.component';
+import { VideoLessonComponent } from './components';
 
 const routes: Routes = [
   {
@@ -12,11 +13,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CoursePreviewPageComponent, VideoPreviewComponent],
+  declarations: [
+    CoursePreviewPageComponent,
+    VideoPreviewComponent,
+    VideoLessonComponent
+  ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports: [CoursePreviewPageComponent, VideoPreviewComponent]
+  exports: [
+    CoursePreviewPageComponent,
+    VideoPreviewComponent,
+    VideoLessonComponent
+  ]
 })
 export class CoursePreviewPageModule { }
