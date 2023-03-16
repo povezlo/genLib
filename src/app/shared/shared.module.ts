@@ -7,9 +7,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
- import { MatChipsModule } from '@angular/material/chips'; 
- import { MatDividerModule } from '@angular/material/divider'; 
- import { MatListModule } from '@angular/material/list'; 
+import { MatChipsModule } from '@angular/material/chips'; 
+import { MatDividerModule } from '@angular/material/divider'; 
+import { MatListModule } from '@angular/material/list'; 
+import { NgOptimizedImage } from '@angular/common';
 
 const MATERIAL_MODULES = [
     MatCardModule,
@@ -26,10 +27,12 @@ const MATERIAL_MODULES = [
   declarations: [],
   imports: [
     CommonModule,
+    NgOptimizedImage,
     ...MATERIAL_MODULES
   ],
   exports: [
     CommonModule,
+    NgOptimizedImage,
     ...MATERIAL_MODULES
   ]
 })
