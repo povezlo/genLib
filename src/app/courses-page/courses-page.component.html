@@ -1,26 +1,10 @@
 <h1>Courses List</h1>
-<div>
-    <mat-card *ngFor="let course of courses$ | async" class="example-card">
-        <mat-card-header>
-            <mat-card-title-group>
-                <mat-card-title>{{course.title}}</mat-card-title>
-                <mat-card-subtitle>{{course.launchDate | date}}</mat-card-subtitle>
-                <mat-card-subtitle>lessons count:{{course.lessonsCount}}</mat-card-subtitle>
-                <mat-card-subtitle>lessons count:{{course.lessonsCount}}</mat-card-subtitle>
-                <mat-card-subtitle>Category:{{course.lessonsCount}}</mat-card-subtitle>
-                <mat-card-subtitle>{{course.status ? 'Есть в наличие': 'Нет в наличие'}}</mat-card-subtitle>
-            </mat-card-title-group>
-        </mat-card-header>
-        <img mat-card-image [src]="course.previewImageLink + '/cover.webp'" [alt]="course.title">
-        <mat-card-content>
-            {{course.description}}
-        </mat-card-content> <mat-card-actions>
-            <app-rating [rating]="course.rating"></app-rating>
-            <mat-chip-listbox aria-label="Fish selection">
-                <mat-chip *ngFor="let tag of course.tags" color="accent">{{tag}}</mat-chip>
-            </mat-chip-listbox>
-        </mat-card-actions>
-    </mat-card>
+
+<ng-container *ngIf="courses$ | async; nodata">
+<app-course *ngFor="let course of courses$ | async" [course]="course"></app-course>
+</ng-container>
+
+<ng-template #nodata>No data</ng-template>
+
 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
 

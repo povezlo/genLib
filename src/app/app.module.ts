@@ -1,16 +1,15 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TokenInterceptor } from './shared';
+import { NotificationModule, TokenInterceptor } from './shared';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,8 @@ import { FooterModule } from './footer/footer.module';
     HttpClientModule,
     HeaderModule,
     FooterModule,
-    MatSidenavModule
+    SharedModule,
+    NotificationModule.forRoot()
   ],
     providers: [
     {
@@ -38,18 +38,6 @@ import { FooterModule } from './footer/footer.module';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
-    },
-    {
-      provide: APP_BASE_HREF,
-      useFactory: (s: PlatformLocation): string => s.getBaseHrefFromDOM(),
-      deps: [PlatformLocation],
-    },
-        {
-      provide: APP_INITIALIZER,
-      useFactory: () => {
-        console.log('init app ');
-      },
-      deps: [],
     }
   ],
   bootstrap: [AppComponent]

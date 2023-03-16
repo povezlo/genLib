@@ -7,7 +7,7 @@ interface ICommonInfo {
     meta: IMetaPreview;
 }
 
-export interface ICoursesPreview extends ICommonInfo  {
+export interface ICourses extends ICommonInfo  {
             tags: string[];
             launchDate: string;
             description: string;
@@ -16,14 +16,14 @@ export interface ICoursesPreview extends ICommonInfo  {
             containsLockedLessons: boolean;
 }
 
-export interface ICoursePreview {
+export interface ICoursePreview extends ICourses {
     lessons: ILesson[];
 }
 
 export interface IMetaPreview {
     slug: string;
     skills: string[];
-    courseVideoPreview: ICourseVideoPreview;
+    courseVideoPreview?: ICourseVideoPreview;
 }
 
 export interface ICourseVideoPreview {
@@ -38,10 +38,8 @@ interface ILesson extends ICommonInfo {
     link: string;
 }
 
-export interface IPreviewCoursesResponse {
-    courses: ICoursesPreview[];
+export interface ICoursesResponse {
+    courses: ICourses[];
 }
 
-export interface ITokenResponse {
-    token: string;
-}
+export type ICoursePreviewResponse = ICoursePreview

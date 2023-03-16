@@ -1,0 +1,27 @@
+<mat-card *ngIf="course">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>{{course.title}}</mat-card-title>
+            <mat-card-subtitle>{{course.launchDate | date}}</mat-card-subtitle>
+            <mat-card-subtitle>lessons count:{{course.lessonsCount}}</mat-card-subtitle>
+            <mat-card-subtitle>lessons count:{{course.lessonsCount}}</mat-card-subtitle>
+            <mat-card-subtitle>Category:{{course.lessonsCount}}</mat-card-subtitle>
+            <mat-card-subtitle>{{course.status ? 'available': 'not available'}}</mat-card-subtitle>
+        </mat-card-title-group>
+    </mat-card-header>
+    <img mat-card-image [src]="course.previewImageLink + '/cover.webp'" [alt]="course.title" height="300px">
+    <mat-card-content>
+        {{course.description}}
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <app-rating [rating]="course.rating"></app-rating>
+        <mat-chip-listbox aria-label="tags">
+            <mat-chip *ngFor="let tag of course.tags" color="accent">{{tag}}</mat-chip>
+        </mat-chip-listbox>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/courses', course.id]">Preview Course</button>
+    </mat-card-actions>
+</mat-card>

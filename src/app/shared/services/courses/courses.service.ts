@@ -4,23 +4,28 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
-import { IPreviewCoursesResponse } from '../../interfaces'
+import { ICoursesResponse, ICoursePreviewResponse } from '../../interfaces'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  private courses$: Observable<IPreviewCoursesResponse> | null = null;
+  private courses$: Observable<ICoursesResponse> | null = null;
 
   constructor(private apiService: ApiClientBaseService) {}
 
 
-  getPreviewCourses(): Observable<IPreviewCoursesResponse> | null {
+  getCourses(): Observable<ICoursesResponse> | null {
       if (!this.courses$) {
-          this.courses$ = this.apiService.get<IPreviewCoursesResponse>('core/preview-courses')
+          this.courses$ = this.apiService.get<ICoursesResponse>('core/preview-courses')
           .pipe(shareReplay());
     }
 
     return this.courses$;
+  }
+
+
+  getPreviewCourse(id: string): Observable<ICoursePreviewResponse> {
+      return this.apiService.get<ICoursePreviewResponse>(`core/preview-courses/${id}`)
   }
 }

@@ -1,26 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 import { CoursesPageComponent } from './courses-page.component';
-import { MatCardModule } from '@angular/material/card';
-import { RatingModule } from '../shared/components';
 import { CoursesRoutingModule } from './courses-routing.module';
-import { MatButtonModule } from '@angular/material/button'; 
-import { MatPaginatorModule } from '@angular/material/paginator';
- import {MatChipsModule} from '@angular/material/chips'; 
+import { CourseComponent } from './components/course/course.component';
 
 @NgModule({
   declarations: [
-    CoursesPageComponent
+    CoursesPageComponent,
+    CourseComponent
   ],
   imports: [
-    CommonModule,
-    CoursesRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    RatingModule,
-    MatPaginatorModule,
-    MatChipsModule
+    SharedModule,
+    CoursesRoutingModule
   ],
-  exports: [CoursesPageComponent]
+  exports: [CoursesPageComponent, CourseComponent]
 })
 export class CoursesPageModule { }

@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'courses',
     component: CoursesPageComponent,
   },
+  {
+    path: 'courses/:id',
+    loadChildren: () => import('../course-preview-page/course-preview-page.module').then(m => m.CoursePreviewPageModule),
+  },
 ];
 
 @NgModule({

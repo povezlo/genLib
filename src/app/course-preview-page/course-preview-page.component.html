@@ -1,0 +1,82 @@
+<ng-container *ngIf="course$ | async as course; nodata">
+    <div>
+        <section>
+            <ul>
+                <li>{{course.title}}</li>
+                <li>{{course.launchDate | date}}</li>
+                <li>lessons count:{{course.lessonsCount}}</li>
+                <li>Description:{{course.description}}</li>
+                <li>Duration:{{course.duration}}</li>
+                <li>Locked Lessons{{course.containsLockedLessons ? 'Yes': 'No'}}</li>
+            </ul>
+        </section>
+
+        <img mat-card-image [src]="course.previewImageLink + '/cover.webp'" [alt]="course.title">
+        
+        <section>
+            <ng-container *ngIf="course?.lessons as lessons; noLessons">
+                <ul *ngFor="let lesson of lessons">
+                    <li>Title: {{lesson.title}}</li>
+                    <li>Duration: {{lesson.duration}}</li>
+                    <li>Video:
+                    <video class="video-player" width="640" height="360" controls>
+                        <source [src]="lesson.link" type="application/x-mpegURL">
+                        Ваш браузер не поддерживает HTML5 видео.
+                    </video>
+                </li>
+                    <li>Status: {{lesson.status}}</li><mat-list-item>Order: {{lesson.order}}</mat-list-item>
+                    <li>
+                        <img 
+                            mat-card-image
+                            [src]="lesson.previewImageLink + '/' + lesson.order + '.webp'"
+                            [alt]="lesson.title"
+                            height="100px"
+                        >
+                    </li>
+                    <li>Order: {{lesson.order}}</li>
+                    <li>Type: {{lesson.type}}</li>
+                </ul>
+            </ng-container>
+            <ng-template #noLessons>No lessons</ng-template>
+
+        </section>
+        <!-- <mat-divider></mat-divider> -->
+
+        <section>
+            <ul *ngIf="course?.meta as meta; noMeta">
+                <li>Slug: {{meta?.slug}}</li>
+                <mat-list-item>Skills:
+                    <mat-chip-listbox *ngIf="meta?.skills as skills; noSkills" aria-label="tags">
+                        <mat-chip *ngFor="let skill of skills" color="accent">{{skill}}</mat-chip>
+                    </mat-chip-listbox>
+                    <ng-template #noSkills>No skills</ng-template>
+                </mat-list-item>
+                <li *ngIf="meta?.courseVideoPreview as video; noVideos">Video Preview:
+                    <p>
+                        {{video.link + '/' + '1' + '.webp'}}
+                    </p> 
+                    <p>Duration: {{video.duration}}</p>
+                    <p><img mat-card-image [src]="video.previewImageLink + '/cover.webp'" [alt]="course.title"></p>
+                </li>
+                <ng-template #noVideos>No videos</ng-template>
+            </ul><ng-template #noMeta>No Meta Information</ng-template>
+        </section>    
+
+        <!-- <mat-divider></mat-divider>  -->
+        
+        <section>
+            <app-rating [rating]="course.rating"></app-rating>
+            <mat-chip-listbox aria-label="tags">
+                <mat-chip *ngFor="let tag of course.tags" color="accent">{{tag}}</mat-chip>
+            </mat-chip-listbox>
+        </section>
+        <!-- <mat-divider></mat-divider> -->
+        
+    </div>
+</ng-container>
+
+<section>
+    <button mat-raised-button color="primary" [routerLink]="['courses']">Back to courses</button>
+</section>
+
+<ng-template #nodata>Course is not founded</ng-template>

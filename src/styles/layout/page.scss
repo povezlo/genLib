@@ -17,11 +17,20 @@
 
     .header {
       &__title {
-        font-size: 1.2em;
+        font-size: 1.3em;
         width: 100%;
         display: flex;
         align-items: unset;
         justify-content: space-between;
+        &:hover {
+          cursor: pointer;
+        }
+      }&__brand {
+        &::first-letter {
+          color: #E8562CFF;
+          font-weight: 700;
+          font-size: 1.3rem;
+        }
       }
     }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { CoursesService, IPreviewCoursesResponse, ICoursesPreview } from '../shared';
+import { CoursesService, ICoursesResponse, ICourses } from '../shared';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -12,15 +12,15 @@ import { MatPaginator } from '@angular/material/paginator';
 export class CoursesPageComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  courses$: Observable<ICoursesPreview[]> | null = null;
-  dataSource: MatTableDataSource<ICoursesPreview> | null = null;
+  courses$: Observable<ICourses[]> | null = null;
+  dataSource: MatTableDataSource<ICourses> | null = null;
 
   private readonly subscription = new Subscription();
 
   constructor(private courses: CoursesService) {}
 
   ngOnInit(): void {
-      const coursesSub = this.courses.getPreviewCourses()?.subscribe((res: IPreviewCoursesResponse) => {
+      const coursesSub = this.courses.getCourses()?.subscribe((res: ICoursesResponse) => {
       
       if(!res) {
         return;
@@ -28,7 +28,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       
       const { courses } = res;
 
-      this.dataSource = new MatTableDataSource<ICoursesPreview>(courses);
+      this.dataSource = new MatTableDataSource<ICourses>(courses);
       this.dataSource.paginator = this.paginator;
       this.courses$ = this.dataSource.connect();
       } );
