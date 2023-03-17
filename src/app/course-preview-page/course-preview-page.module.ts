@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { VideoPreviewComponent } from './components';
 import { CoursePreviewPageComponent } from './course-preview-page.component';
 import { VideoLessonComponent } from './components';
+import { VideoComponent } from './components/video/video.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
   declarations: [
     CoursePreviewPageComponent,
     VideoPreviewComponent,
-    VideoLessonComponent
+    VideoLessonComponent,
+    VideoComponent
   ],
   imports: [
     SharedModule,
