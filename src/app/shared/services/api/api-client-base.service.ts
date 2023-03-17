@@ -1,8 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Observable, catchError, EMPTY } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { IHttpParams } from 'src/app/shared/interfaces';
-import { NotificationService } from '../notification/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class ApiClientBaseService {
     @Inject('ENV_API') private readonly apiUrl: string,
     @Inject('BASE_URL') private readonly baseUrl: string,
     private http: HttpClient,
-    private notification: NotificationService
     ) { }
 
     
@@ -28,11 +26,6 @@ export class ApiClientBaseService {
     });
     }
 
-    return this.http.get<T>(url, { params })
-    .pipe(catchError((error: HttpErrorResponse) => {
-        console.error(error);
-        this.notification.error(`Error: ${error.error.message}`)
-        return EMPTY;
-    }));
+    return this.http.get<T>(url, { params });
   }
 }
