@@ -3,9 +3,10 @@ import {
   Component,
   ElementRef,
   Input,
-  ViewChild
- } from '@angular/core';
-import Hls, { HlsUrlParameters } from 'hls.js';
+  ViewChild,
+  OnDestroy
+} from '@angular/core';
+import Hls from 'hls.js';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
 
@@ -15,32 +16,41 @@ const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.scss']
 })
-export class VideoPlayerComponent implements AfterViewInit {
+export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() url?: string;
   @ViewChild('videoPlayer') videoElementRef!: ElementRef;
 
   videoElement!: HTMLVideoElement;
+  private hls = new Hls();
 
   ngAfterViewInit(): void {
+    this.initVideoElement();
+  }
+
+  initVideoElement(): void {
     this.videoElement = this.videoElementRef?.nativeElement;
 
     if(!this.url) return;
 
     if (Hls.isSupported()) {
-      console.log("Video streaming supported by HLSjs")
+      console.log("Video streaming supported by HLSjs", this.videoElement.currentTime)
 
 
-      const hls = new Hls();
-      hls.loadSource(this.url);
-      hls.attachMedia(this.videoElement);
-      hls.on(Hls.Events.MANIFEST_PARSED, (e) => {
-        console.log('videostream', e);
+      this.hls.loadSource(this.url);
+      this.hls.attachMedia(this.videoElement);
+      
+      this.hls.on(Hls.Events.MANIFEST_PARSED, (e, data) => {
+        console.log('MANIFEST_PARSED', e);
+        console.log('MANIFEST_PARSED', data);
       });
-      HlsUrlParameters
     }
 
     else if (this.videoElement.canPlayType(HLS_MEDIA_TYPE)) {
       this.videoElement.src = this.url;
     }
+  }
+
+  ngOnDestroy(): void {
+      this.hls.destroy();
   }
 }
