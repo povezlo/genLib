@@ -1,7 +1,7 @@
 <h1>Courses List</h1>
 
-<ng-container *ngIf="courses$ | async; nodata">
-<app-course *ngFor="let course of courses$ | async" [course]="course"></app-course>
+<ng-container *ngIf="courses$ | async as courses; nodata">
+<app-course *ngFor="let course of courses" [course]="course"></app-course>
 </ng-container>
 
 <ng-template #nodata>No data</ng-template>

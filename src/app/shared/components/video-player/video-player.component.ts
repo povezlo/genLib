@@ -5,11 +5,11 @@ const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
 
 
 @Component({
-  selector: 'app-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  selector: 'app-video-player',
+  templateUrl: './video-player.component.html',
+  styleUrls: ['./video-player.component.scss']
 })
-export class VideoComponent implements AfterViewInit {
+export class VideoPlayerComponent implements AfterViewInit {
   @Input() url?: string;
   @ViewChild('videoPlayer') videoElementRef!: ElementRef;
 
