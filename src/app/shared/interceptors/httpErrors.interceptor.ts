@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
-
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
-
 import { NotificationService } from '../services/notification/notification.service';
 
 @Injectable()

@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { 
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild
+ } from '@angular/core';
 import Hls, { HlsUrlParameters } from 'hls.js';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';

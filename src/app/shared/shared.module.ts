@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { RatingModule } from '../shared/components';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +8,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips'; 
 import { MatDividerModule } from '@angular/material/divider'; 
 import { MatListModule } from '@angular/material/list'; 
-import { NgOptimizedImage } from '@angular/common';
+
+import { RatingModule } from '../shared/components';
 
 const MATERIAL_MODULES = [
     MatCardModule,
