@@ -9,7 +9,7 @@
             <mat-card-subtitle>{{course.status ? 'available': 'not available'}}</mat-card-subtitle>
         </mat-card-title-group>
     </mat-card-header>
-    <img mat-card-image [src]="course.previewImageLink + '/cover.webp'" [alt]="course.title">
+    <img mat-card-image [src]="course.previewImageLink + '/cover.webp'" [alt]="course.title" width="200px">
     <mat-card-content>
         {{course.description}}
     </mat-card-content>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { CoursesService, ICoursesResponse, ICourses } from '../shared';
+import { CoursesService, ICoursesResponse, ICourses, LoaderService } from '../shared';
 import { SharedLoaderState } from '../shared/components';
 
 @Component({
@@ -16,19 +16,18 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   courses$: Observable<ICourses[]> | null = null;
   dataSource: MatTableDataSource<ICourses> | null = null;
   
-  loaderState = SharedLoaderState.loading;
   sharedLoaderState = SharedLoaderState;
 
   private readonly subscription = new Subscription();
 
-  constructor(private courses: CoursesService) {}
+  constructor(private courses: CoursesService, private loader: LoaderService) {}
 
   ngOnInit(): void {
-      this.loaderState = SharedLoaderState.loading;
+      this.loader.loaderStateSource$.next(SharedLoaderState.loading);
       const coursesSub = this.courses.getCourses()?.subscribe((res: ICoursesResponse) => {
       
       if(!res) {
-        this.loaderState = SharedLoaderState.noData;
+        this.loader.loaderStateSource$.next(SharedLoaderState.noData);
         return;
       }
       
@@ -38,7 +37,7 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       this.dataSource.paginator = this.paginator;
       this.courses$ = this.dataSource.connect();
 
-      this.loaderState = SharedLoaderState.loaded
+      this.loader.loaderStateSource$.next(SharedLoaderState.loaded);
       } );
 
       this.subscription.add(coursesSub);

@@ -1,7 +1,7 @@
+@import './variables.scss';
+
 .app-page {
     margin: 0 auto;
-    background: $base-light;
-    border: 1px solid $base-dark;
     border-radius: 8px;
     padding: 0;
 
@@ -12,7 +12,7 @@
       z-index: 1000;
       width: 100%;
       text-align: center;
-      height: 64px;
+      height: $header-height;
     }
 
     .header {
@@ -27,40 +27,28 @@
         }
       }&__brand {
         &::first-letter {
-          color: #E8562CFF;
+          color: $brand-color;
           font-weight: 700;
-          font-size: 1.3rem;
         }
       }
     }
 
-    &__main {
-      flex: 1;
-      padding: 10px;
-      margin-top: 64px;
-      min-height: calc(100vh - 64px - 90px);
-    }
-
     &__footer {
-      height: 88px;
+      height: 5rem;
       width: 100%;
       display: flex;
       flex-direction: column-reverse;
-      padding: 10px;
-      color: #fafafb;
+      padding: .6rem;
+      color: $base-light;
       font-size: 14px;
       font-weight: 300;
       line-height: 1.5rem;
-      background-color: #3f3a3a;
+      background-color: $base-dark;
       &-copyright {
         font-size: 0.8rem;
-        color: darkturquoise;
+        color: $base-light;
         text-align: center;
         margin-bottom: 1rem;
-      }
-      &-disclaimer {
-        font-weight: lighter;
-        padding-bottom: 1.5rem;
       }
     }
 }

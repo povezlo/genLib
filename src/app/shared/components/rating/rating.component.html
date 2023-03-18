@@ -1,13 +1,7 @@
 <section>
-  <div>{{rating}}</div>
-
-  <button *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i"
-          mat-icon-button color="accent"
-          matTooltipPosition="above"
-  >
-   <mat-icon>
+  <h3>{{rating}}</h3>
+    <mat-icon *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i">
       {{rating | showStar: i}}
     </mat-icon>
-  </button>
 </section>
 

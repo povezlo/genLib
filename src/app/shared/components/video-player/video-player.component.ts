@@ -45,9 +45,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     this.videoPlayer.currentTime = this.getProgress();
 
     if (Hls.isSupported()) {
-      console.log("Video streaming supported by HLSjs", this.videoPlayer.currentTime)
-
-
       this.hls.loadSource(this.url);
       this.hls.attachMedia(this.videoPlayer);
       this.saveProgress();

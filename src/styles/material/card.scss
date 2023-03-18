@@ -1,0 +1,61 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@import '../variables.scss';
+
+
+.outer-card {
+  border: 1px solid $main-content-border-color;
+}
+
+body mat-card.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+  border: 1px solid $main-content-border-color;
+}
+
+@mixin card-theme($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+
+  mat-card.mat-card {
+    padding: 1.25rem;
+    @include mat.overridable-elevation(4);
+
+    .mat-card-header {
+      mat-card-title.mat-card-title {
+        border-color: mat.get-color-from-palette($primary-palette, Gray)!important;
+        background-color: mat.get-color-from-palette($primary-palette, White)!important;
+      }
+    }
+  }
+
+
+  mat-card.mat-card.card-course {
+    width: calc(50% - 3rem);
+    position: relative;
+    padding: 1rem 0;
+    .mat-list {
+      border-top: none;
+    }
+
+    .mat-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .mat-card-header-text {
+        margin: 0 0.25rem;
+        padding: .75rem 0;
+      }
+      mat-card-title.mat-card-title {
+        font-size: .8rem;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+    }
+    &:nth-child(odd) { order: 1; }
+    &:nth-child(even) { order: 2; }
+  }
+}
+

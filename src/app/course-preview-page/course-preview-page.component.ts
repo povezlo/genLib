@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params, Router } from '@angular/router'
+import { ActivatedRoute, Params } from '@angular/router'
 import { Observable } from 'rxjs'
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CoursesService } from '../shared';
+import { CoursesService, LoaderService } from '../shared';
 import { ICoursePreviewResponse } from '../shared';
 import { SharedLoaderState } from '../shared/components';
 @Component({
@@ -13,26 +13,25 @@ import { SharedLoaderState } from '../shared/components';
 export class CoursePreviewPageComponent implements OnInit {
   course$: Observable<ICoursePreviewResponse> | null = null;  
   
-  loaderState = SharedLoaderState.loading;
   sharedLoaderState = SharedLoaderState;
 
   constructor(
     private route: ActivatedRoute,
     private courses: CoursesService,
-    private router: Router
+    private loader: LoaderService
   ) {}
 
   ngOnInit(): void {
-    this.loaderState = SharedLoaderState.loading;
+    this.loader.loaderStateSource$.next(SharedLoaderState.loading);
     this.course$ = this.route.params
     .pipe(
       map((params: Params) => params['id']),
       switchMap(id => this.courses.getPreviewCourse(id)),
       tap((res: ICoursePreviewResponse) => {
         if(res) {
-          this.loaderState = SharedLoaderState.loaded;
+          this.loader.loaderStateSource$.next(SharedLoaderState.loaded);
         } else {
-          this.loaderState = SharedLoaderState.noData;
+          this.loader.loaderStateSource$.next(SharedLoaderState.noData);
         }
       })
     );

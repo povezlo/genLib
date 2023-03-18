@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@import '../variables.scss';
+
+@mixin sidenav-theme($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+
+  .mat-drawer-container.mat-sidenav-container {
+    min-height: $min-height;
+    padding: 1rem;
+    margin-top: $header-height;
+    background: ghostwhite;
+    
+    .mat-drawer-content.mat-sidenav-content {
+      max-width: 50rem;
+      flex-grow: 1;
+      margin: 0 auto;
+      padding: 1rem;
+      background-color: $base-light;
+    }
+    .mat-drawer-content.no-margin {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

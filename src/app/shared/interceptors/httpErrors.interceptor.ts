@@ -3,11 +3,14 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@a
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { NotificationService } from '../services/notification/notification.service';
+import { LoaderService } from '../services';
+import { SharedLoaderState } from '../components';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private notification: NotificationService) {}
+  sharedLoaderState = SharedLoaderState;
 
+  constructor(private notification: NotificationService, private loader: LoaderService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     return next.handle(request).pipe(
@@ -16,6 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         
         console.error(`Error: ${error.status}\nMessage: ${errorMessage}`);
         this.notification.error(`Error: ${errorMessage}`)
+        this.loader.loaderStateSource$.next(this.sharedLoaderState.error);
         return EMPTY;
       })
     );

@@ -1,9 +1,14 @@
-<div [class.wrapper-spinner]="state === sharedLoaderState.loading">
-  <h3 *ngIf="state === sharedLoaderState.loading">{{state}}...</h3>
-  <mat-spinner *ngIf="state === sharedLoaderState.loading" [diameter]="60"></mat-spinner>
-  <div class="spinner" *ngIf="state !== sharedLoaderState.loaded">
-    <p *ngIf="state === sharedLoaderState.error">{{ errorMessage }}</p>
-    <p *ngIf="state === sharedLoaderState.noData">{{ noDataMessage }}</p>
+<div *ngIf="state$ | async as state">
+  <div [class.wrapper-spinner]="state === sharedLoaderState.loading">
+    <h3 *ngIf="state === sharedLoaderState.loading">{{state}}...</h3>
+  
+    <mat-spinner color="accent" *ngIf="state === sharedLoaderState.loading" [diameter]="60"></mat-spinner>
+  
+    <section class="message-container" *ngIf="state !== sharedLoaderState.loaded">
+      <p *ngIf="state === sharedLoaderState.error">Oops! Something wrong!</p>
+      <p *ngIf="state === sharedLoaderState.noData">Sorry, no data here.</p>
+    </section>
+  
+    <ng-content></ng-content>
   </div>
-  <ng-content></ng-content>
 </div>
