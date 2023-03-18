@@ -6,7 +6,10 @@
         width="100%"
         controls
         playsinline
-        (keydown)="onKeyDown($event)"
+        loop
+        (keydown)="setPlaybackRate($event)"
     >
     </video>
 </div>
+
+<div class="tooltip-playback-ratio" matTooltip="Current playback ratio x{{videoPlayer.playbackRate}}" matTooltipPosition="above">></div>
