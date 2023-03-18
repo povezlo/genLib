@@ -9,6 +9,7 @@ import {
 import Hls from 'hls.js';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
+const ID_VIDEO = 'id_video';
 
 
 @Component({
@@ -17,10 +18,13 @@ const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
   styleUrls: ['./video-player.component.scss']
 })
 export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
-  @Input() url?: string;
+  @Input() url = '';
+  @Input() poster?: string;
+  @Input() title?: string;
   @ViewChild('videoPlayer') videoElementRef!: ElementRef;
 
-  videoElement!: HTMLVideoElement;
+  videoPlayer!: HTMLVideoElement;
+  private defaultPlaybackRate = 0;
   private hls = new Hls();
 
   ngAfterViewInit(): void {
@@ -28,29 +32,62 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   }
 
   initVideoElement(): void {
-    this.videoElement = this.videoElementRef?.nativeElement;
+    this.videoPlayer = this.videoElementRef?.nativeElement;
+    
+    if(this.poster)  this.videoPlayer.poster = this.poster;
 
-    if(!this.url) return;
+    this.defaultPlaybackRate = this.videoPlayer.defaultPlaybackRate;
+ 
+    this.videoPlayer.play();
 
     if (Hls.isSupported()) {
-      console.log("Video streaming supported by HLSjs", this.videoElement.currentTime)
+      console.log("Video streaming supported by HLSjs", this.videoPlayer.currentTime)
 
 
       this.hls.loadSource(this.url);
-      this.hls.attachMedia(this.videoElement);
-      
-      this.hls.on(Hls.Events.MANIFEST_PARSED, (e, data) => {
-        console.log('MANIFEST_PARSED', e);
-        console.log('MANIFEST_PARSED', data);
+      this.hls.attachMedia(this.videoPlayer);
+
+      this.setStartTime()
+      this.videoPlayer.addEventListener('timeOut', (e)=> console.log(e))
+      this.hls.on(Hls.Events.LEVEL_LOADED, (e, data) => {
+        console.log('LEVEL_LOADED', data);
       });
     }
 
-    else if (this.videoElement.canPlayType(HLS_MEDIA_TYPE)) {
-      this.videoElement.src = this.url;
+    else if (this.videoPlayer.canPlayType(HLS_MEDIA_TYPE)) {
+      this.videoPlayer.src = this.url;
+    }
+  }
+
+  setStartTime(): void {
+    const currentTime = localStorage.getItem(ID_VIDEO) || 0;
+    if(currentTime && typeof currentTime === 'number') {
+      this.videoPlayer.currentTime = currentTime;
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    switch (event.key) {
+      case '0':
+        this.videoPlayer.playbackRate = this.defaultPlaybackRate;
+        break;
+      case '2':
+        if (event.shiftKey) {
+          this.videoPlayer.playbackRate = 2;
+        }
+        break;
+      case '+':
+        this.videoPlayer.playbackRate += 0.25;
+        break;
+      case '-':
+        this.videoPlayer.playbackRate -= 0.25;
+        break;
     }
   }
 
   ngOnDestroy(): void {
+    if (this.hls) {
       this.hls.destroy();
+    }
   }
 }

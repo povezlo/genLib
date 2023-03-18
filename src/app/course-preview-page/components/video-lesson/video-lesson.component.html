@@ -2,11 +2,11 @@
     <li>Title: {{lesson.title}}</li>
     <li>Duration: {{lesson.duration}}</li>
     <li>Video:
-        <app-video-player [url]="lesson.link"></app-video-player>
+        <app-video-player [url]="lesson.link" [title]="lesson.title" [poster]="lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'"></app-video-player>
     </li>
     <li>Status: {{lesson.status}}</li><mat-list-item>Order: {{lesson.order}}</mat-list-item>
     <li>
-        <img mat-card-image [src]="lesson.previewImageLink + '/' + lesson.order + '.webp'" [alt]="lesson.title"
+        <img mat-card-image [src]="lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'" [alt]="lesson.title"
             width="400" height="200">
     </li>
     <li>Order: {{lesson.order}}</li>

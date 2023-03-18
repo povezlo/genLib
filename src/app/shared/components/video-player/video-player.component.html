@@ -1,4 +1,12 @@
 <div #videoContainer id="videoContainer">
-    <h1>HLS JS Player</h1>
-    <video #videoPlayer id="videoPlayer" width="704" height="396" controls playsinline></video>
+    <h3 *ngIf="title">{{title}}</h3>
+    <video
+        #videoPlayer
+        id="videoPlayer"
+        width="100%"
+        controls
+        playsinline
+        (keydown)="onKeyDown($event)"
+    >
+    </video>
 </div>
