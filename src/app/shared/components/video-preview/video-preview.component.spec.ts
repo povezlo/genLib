@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VideoPreviewComponent } from './video-preview.component';
 
-describe('VideoPreviewComponent', () => {
+describe('VideoLessonComponent', () => {
   let component: VideoPreviewComponent;
   let fixture: ComponentFixture<VideoPreviewComponent>;
 

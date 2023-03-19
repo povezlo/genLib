@@ -22,6 +22,8 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() url = '';
   @Input() poster?: string;
   @Input() title?: string;
+  @Input() unmuted = false;
+  @Input() autoplay = false;
   @ViewChild('videoPlayer') videoElementRef!: ElementRef; 
   @ViewChild(MatTooltip) tooltip!: MatTooltip;
 
@@ -41,6 +43,8 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     this.videoPlayer = this.videoElementRef?.nativeElement;
     
     if(this.poster)  this.videoPlayer.poster = this.poster;
+    this.videoPlayer.autoplay = this.autoplay;
+    this.videoPlayer.muted = this.unmuted;
     this.defaultPlaybackRate = this.videoPlayer.defaultPlaybackRate;
     this.videoPlayer.currentTime = this.getProgress();
 

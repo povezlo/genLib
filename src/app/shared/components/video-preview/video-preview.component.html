@@ -1,4 +1,17 @@
 <section class="mat-elevation-z8">
+    <ng-container *ngIf="video; novideo">
+        <div class="wrapper">
+            <app-video-player
+                [url]="video.link"
+                [poster]="video.previewImageLink"
+                [autoplay]="autoPlay"
+                [unmuted]="unmuted">
+            </app-video-player>
+
+            <div class="duration">Duration: {{video.duration}}</div>
+        </div>    
+
+    </ng-container>
 
 
     <ng-template #novideo>No video</ng-template>

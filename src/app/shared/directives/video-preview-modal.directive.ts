@@ -1,4 +1,10 @@
-import { ComponentRef, Directive, HostListener, Input, ViewContainerRef } from '@angular/core';
+import { 
+  ComponentRef,
+  Directive,
+  HostListener,
+  Input,
+  ViewContainerRef
+  } from '@angular/core';
 import { VideoPreviewComponent } from '../../course-preview-page/components';
 import { ICourseVideoPreview } from '../interfaces';
 
@@ -26,6 +32,8 @@ export class VideoPreviewModalDirective {
 
     const componentFactory = this.viewContainerRef.createComponent(VideoPreviewComponent);
     componentFactory.instance.video = this.videoPreview;
+    componentFactory.instance.unmuted = true;
+    componentFactory.instance.autoPlay = true;
     this.componentRef = componentFactory;
   }
 

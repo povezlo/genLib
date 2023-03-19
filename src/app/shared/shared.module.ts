@@ -9,7 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider'; 
 import { MatListModule } from '@angular/material/list'; 
 
-import { RatingModule, VideoPlayerModule } from '../shared/components';
+import { RatingModule, VideoPlayerModule, VideoPreviewComponent } from '../shared/components';
 
 const MATERIAL_MODULES = [
     MatCardModule,
@@ -23,7 +23,7 @@ const MATERIAL_MODULES = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [VideoPreviewComponent],
   imports: [
     CommonModule,
     VideoPlayerModule,
@@ -32,7 +32,8 @@ const MATERIAL_MODULES = [
   exports: [
     CommonModule,
     VideoPlayerModule,
-    ...MATERIAL_MODULES
+    ...MATERIAL_MODULES,
+    VideoPreviewComponent
   ]
 })
 export class SharedModule { }
