@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { CoursePreviewPageComponent } from './course-preview-page.component';
-import { VideoLessonComponent } from './components';
+import { VideoLessonsComponent } from './components';
 import { SkiilBoxModule, SharedLoaderModule } from '../shared/components';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CoursePreviewPageComponent,
-    VideoLessonComponent
+    VideoLessonsComponent
   ],
   imports: [
     SkiilBoxModule,
@@ -27,7 +27,7 @@ const routes: Routes = [
   ],
   exports: [
     CoursePreviewPageComponent,
-    VideoLessonComponent
+    VideoLessonsComponent
   ]
 })
 export class CoursePreviewPageModule { }

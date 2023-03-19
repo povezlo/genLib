@@ -10,30 +10,24 @@
                 <app-video-player
                     [url]="courseVideoPreview.link"
                     [poster]="courseVideoPreview.previewImageLink"
+                    [title]="courseVideoPreview.title"
                     [autoplay]="true"
                 >
                 </app-video-player>
             </ng-container>
-            
-
-                            
-                                    <!-- <section>
-                                        <h2>Meta Info</h2>
-                                        <ul *ngIf="course?.meta as meta; noMeta">
-                                            <li>Slug: {{meta?.slug}}</li>
-                                            
-                                            <app-skill-box [skills]="meta.skills"></app-skill-box>
-                            
-                                            <app-video-preview [video]="meta.courseVideoPreview"></app-video-preview>
-                            
-                                        </ul><ng-template #noMeta>No Meta Information</ng-template>
-                        </section> -->
 
             <mat-card-content>
                 <h3> Details: </h3>
                 <mat-list role="Details">
-                    <mat-list-item><em><mat-card-subtitle>Description:{{course.description}}</mat-card-subtitle></em></mat-list-item>
+                    <mat-list-item>
+                        <mat-card-subtitle><strong>Note:</strong> Increase playback ratio: <b>+</b>,
+                        Decrease playback ratio: <b>-</b>,
+                        Default playback ratio: <b>0</b>
+                        </mat-card-subtitle>
+                    </mat-list-item>
                     <mat-divider></mat-divider> 
+                    <mat-list-item><h3></h3>Description: {{course.description}}</mat-list-item>
+                    <mat-divider></mat-divider>
                     <mat-list-item><em>lessons count: {{course.lessonsCount}}</em></mat-list-item>
                     <mat-list-item><em>Duration: {{course.duration | transformTime}}</em></mat-list-item>
                     <mat-list-item><div class="d-flex">
@@ -47,7 +41,7 @@
                 </mat-list>
                     <mat-divider></mat-divider>
                         
-                <section class="d-flex">
+                <section class="d-flex rating">
                     <app-rating [rating]="course.rating"></app-rating>
                     <mat-chip-listbox aria-label="tags">
                         <mat-chip *ngFor="let tag of course.tags" color="accent">{{tag}}</mat-chip>
@@ -68,7 +62,9 @@
         </section>
 
         <section class="right-side">
-            <mat-card class="mat-elevation-z1"></mat-card>
+            <mat-card class="mat-elevation-z1" *ngIf="course.lessons as lessons">
+                <app-video-lessons [lessons]="lessons"></app-video-lessons>
+            </mat-card>
         </section>
 
     </section>

@@ -11,7 +11,8 @@ import { SharedLoaderState } from '../shared/components';
   styleUrls: ['./course-preview-page.component.scss']
 })
 export class CoursePreviewPageComponent implements OnInit {
-  course$: Observable<ICoursePreviewResponse> | null = null;  
+  course$: Observable<ICoursePreviewResponse> | null = null; 
+  orderLesson = 0; 
   
   sharedLoaderState = SharedLoaderState;
 
@@ -35,5 +36,10 @@ export class CoursePreviewPageComponent implements OnInit {
         }
       })
     );
+  }
+
+  switchLesson(): void {
+    this.orderLesson = 1;
+    console.log(this.orderLesson);
   }
 }
