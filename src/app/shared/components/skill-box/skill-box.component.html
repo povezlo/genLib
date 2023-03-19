@@ -1,0 +1,7 @@
+<mat-list-item> 
+    <h4>Skills:</h4>
+    <mat-chip-listbox *ngIf="skills; noSkills" aria-label="skills">
+        <mat-chip *ngFor="let skill of skills" color="accent">{{skill}}</mat-chip>
+    </mat-chip-listbox>
+    <ng-template #noSkills>No skills</ng-template>
+</mat-list-item>

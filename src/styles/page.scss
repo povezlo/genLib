@@ -2,7 +2,7 @@
 
 .app-page {
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: .5rem;
     padding: 0;
 
     &__header {
@@ -33,6 +33,20 @@
       }
     }
 
+    main.courses-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      .course {
+        display: flex;
+        flex-direction: column;
+        border-radius: .3rem;
+        margin: .5rem;
+        width: calc(50% - 1.2rem);
+      }
+    }
+
     &__footer {
       height: 5rem;
       width: 100%;
@@ -40,7 +54,7 @@
       flex-direction: column-reverse;
       padding: .6rem;
       color: $base-light;
-      font-size: 14px;
+      font-size: .9rem;
       font-weight: 300;
       line-height: 1.5rem;
       background-color: $base-dark;
@@ -51,4 +65,11 @@
         margin-bottom: 1rem;
       }
     }
+
+    @media (max-width: 1024px) {
+
+      main.courses-list > .course {
+        width: 100%;
+    }
+  }
 }

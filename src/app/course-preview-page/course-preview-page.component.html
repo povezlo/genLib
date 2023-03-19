@@ -27,12 +27,8 @@
                 <h2>Meta Info</h2>
                 <ul *ngIf="course?.meta as meta; noMeta">
                     <li>Slug: {{meta?.slug}}</li>
-                    <mat-list-item>Skills:
-                        <mat-chip-listbox *ngIf="meta?.skills as skills; noSkills" aria-label="tags">
-                            <mat-chip *ngFor="let skill of skills" color="accent">{{skill}}</mat-chip>
-                        </mat-chip-listbox>
-                        <ng-template #noSkills>No skills</ng-template>
-                    </mat-list-item>
+                    
+                    <app-skill-box [skills]="meta.skills"></app-skill-box>
     
                     <app-video-preview [video]="meta.courseVideoPreview"></app-video-preview>
     
