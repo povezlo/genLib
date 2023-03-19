@@ -4,7 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { VideoPreviewComponent } from './components';
 import { CoursePreviewPageComponent } from './course-preview-page.component';
 import { VideoLessonComponent } from './components';
-import { SkiilBoxModule, VideoPlayerModule } from '../shared/components';
+import { SkiilBoxModule } from '../shared/components';
 import { SharedLoaderModule } from '../shared/components';
 
 const routes: Routes = [
@@ -21,7 +21,6 @@ const routes: Routes = [
     VideoLessonComponent
   ],
   imports: [
-    VideoPlayerModule,
     SkiilBoxModule,
     RouterModule.forChild(routes),
     SharedLoaderModule,

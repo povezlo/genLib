@@ -1,0 +1,13 @@
+:host {
+    position: absolute;
+    background-color: white;
+    right: -50%;
+    z-index: 1001;
+}
+section {
+    display: flex;
+    width: 20rem;
+    height: 20rem;
+    border: 1px solid rgb(237, 233, 233);
+    border-radius: .4rem
+}

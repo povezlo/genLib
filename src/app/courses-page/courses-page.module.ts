@@ -4,11 +4,13 @@ import { CourseComponent } from './components';
 import { SharedLoaderModule, SkiilBoxModule } from '../shared/components';
 import { CoursesPageComponent } from './courses-page.component';
 import { CoursesRoutingModule } from './courses-routing.module';
+import { VideoPreviewModalDirective } from '../shared/directives';
 
 @NgModule({
   declarations: [
     CoursesPageComponent,
-    CourseComponent
+    CourseComponent,
+    VideoPreviewModalDirective
   ],
   imports: [
     SharedModule,

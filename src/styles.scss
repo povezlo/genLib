@@ -21,7 +21,6 @@ $genLib-theme: mat.define-light-theme((
 
 @mixin custom-components-theme($theme) {
   @include card-theme($theme);
-  @include sidenav-theme($theme);
 }
 
 @include custom-components-theme($genLib-theme);

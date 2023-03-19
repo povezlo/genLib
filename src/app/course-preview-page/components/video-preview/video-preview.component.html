@@ -1,8 +1,11 @@
 <li *ngIf="video; noVideos">Video Preview:
-    <p>
-        {{video.link + '/' + '1' + '.webp'}}
-    </p>
-    <p>Duration: {{video.duration}}</p>
-    <p><img mat-card-image [src]="video.previewImageLink + '/cover.webp'"></p>
+    <ng-container *ngIf="video; novideo">
+        <app-video-player
+            [url]="video.link"
+            [poster]="video.previewImageLink">
+        </app-video-player>
+        <br><h4>Duration: {{video.duration}}</h4>
+    </ng-container>
+
 </li>
 <ng-template #noVideos>No videos</ng-template>

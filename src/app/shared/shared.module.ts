@@ -9,7 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider'; 
 import { MatListModule } from '@angular/material/list'; 
 
-import { RatingModule } from '../shared/components';
+import { RatingModule, VideoPlayerModule } from '../shared/components';
 
 const MATERIAL_MODULES = [
     MatCardModule,
@@ -26,10 +26,12 @@ const MATERIAL_MODULES = [
   declarations: [],
   imports: [
     CommonModule,
+    VideoPlayerModule,
     ...MATERIAL_MODULES
   ],
   exports: [
     CommonModule,
+    VideoPlayerModule,
     ...MATERIAL_MODULES
   ]
 })
