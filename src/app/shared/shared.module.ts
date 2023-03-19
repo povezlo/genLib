@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list'; 
 
 import { RatingModule, VideoPlayerModule, VideoPreviewComponent } from '../shared/components';
+import { TransformTimePipe } from './pipes/transform-time.pipe';
 
 const MATERIAL_MODULES = [
     MatCardModule,
@@ -23,7 +24,7 @@ const MATERIAL_MODULES = [
 ]
 
 @NgModule({
-  declarations: [VideoPreviewComponent],
+  declarations: [VideoPreviewComponent, TransformTimePipe],
   imports: [
     CommonModule,
     VideoPlayerModule,

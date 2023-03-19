@@ -8,7 +8,7 @@
                 [unmuted]="unmuted">
             </app-video-player>
 
-            <div class="duration">Duration: {{video.duration}}</div>
+            <div class="duration">Duration: {{video.duration | transformTime}}</div>
         </div>    
 
     </ng-container>
