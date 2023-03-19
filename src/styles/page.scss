@@ -33,10 +33,27 @@
       }
     }
 
-    .main-container {
-      max-width: $max-width;
+    .main {
       flex-grow: 1;
       margin: 0 auto;
+      margin-top: $header-height;
+      padding: 1rem;
+    }
+
+    .preview-course {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .left-side {
+        width: 65%;
+      }
+      .right-side {
+        width: 35%;
+      }
+    }
+
+    .main-container {
+      max-width: $max-width;
       padding: 1rem;
       background-color: $base-light;
 
@@ -82,12 +99,21 @@
       width: 100%;
     }
   }
+    .app-page {
+      .main.preview-course {
+          flex-direction: column;
+          justify-content: center;
+      
+          .left-side,
+          .right-side {
+            width: 100%;
+          }
+        }
+    }
 }
 
   @media (min-width: 600px) {
     .main-container {
-    min-height: $min-height;
     padding: 0 10rem;
-    margin-top: $header-height;
   }
 }

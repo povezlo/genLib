@@ -34,7 +34,8 @@ const MATERIAL_MODULES = [
     CommonModule,
     VideoPlayerModule,
     ...MATERIAL_MODULES,
-    VideoPreviewComponent
+    VideoPreviewComponent,
+    TransformTimePipe
   ]
 })
 export class SharedModule { }

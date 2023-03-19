@@ -1,54 +1,77 @@
 <app-shared-loader>
-    <ng-container *ngIf="course$ | async as course">
-        <div>
-            <section>
-                <ul>
-                    <li>{{course.title}}</li>
-                    <li>{{course.launchDate | date}}</li>
-                    <li>lessons count:{{course.lessonsCount}}</li>
-                    <li>Description:{{course.description}}</li>
-                    <li>Duration:{{course.duration}}</li>
-                    <li>Locked Lessons{{course.containsLockedLessons ? 'Yes': 'No'}}</li>
-                </ul>
-            </section>
-    
-            <img mat-card-image [src]="course.previewImageLink + '/cover.webp'" width="400" height="200" priority
-                [alt]="course.title">
-    
-            <section>
-                <h2>Lessons</h2>
-                <ul *ngFor="let lesson of course?.lessons">
-                    <app-video-lesson [lesson]="lesson"></app-video-lesson>
-                </ul>
-            </section>
-            <mat-divider></mat-divider>
-    
-            <section>
-                <h2>Meta Info</h2>
-                <ul *ngIf="course?.meta as meta; noMeta">
-                    <li>Slug: {{meta?.slug}}</li>
-                    
-                    <app-skill-box [skills]="meta.skills"></app-skill-box>
-    
-                    <app-video-preview [video]="meta.courseVideoPreview"></app-video-preview>
-    
-                </ul><ng-template #noMeta>No Meta Information</ng-template>
-            </section>
-    
-            <mat-divider></mat-divider>
-    
-            <section>
-                <app-rating [rating]="course.rating"></app-rating>
-                <mat-chip-listbox aria-label="tags">
-                    <mat-chip *ngFor="let tag of course.tags" color="accent">{{tag}}</mat-chip>
-                </mat-chip-listbox>
-            </section>
-            <mat-divider></mat-divider>
-    
-        </div>
-    </ng-container>
-</app-shared-loader>
+    <section *ngIf="course$ | async as course" class=" main preview-course">
+        <section class="left-side">
+            <mat-card class="mat-elevation-z1">
+                <mat-card-header>
+                <mat-card-title><h1>{{course.title}}</h1></mat-card-title>
+            </mat-card-header>
 
-<section>
-    <button mat-raised-button color="primary" [routerLink]="['courses']">Back to courses</button>
-</section>
+            <ng-container *ngIf="course.lessons[0] as courseVideoPreview">
+                <app-video-player
+                    [url]="courseVideoPreview.link"
+                    [poster]="courseVideoPreview.previewImageLink"
+                    [autoplay]="true"
+                >
+                </app-video-player>
+            </ng-container>
+            
+
+                            
+                                    <!-- <section>
+                                        <h2>Meta Info</h2>
+                                        <ul *ngIf="course?.meta as meta; noMeta">
+                                            <li>Slug: {{meta?.slug}}</li>
+                                            
+                                            <app-skill-box [skills]="meta.skills"></app-skill-box>
+                            
+                                            <app-video-preview [video]="meta.courseVideoPreview"></app-video-preview>
+                            
+                                        </ul><ng-template #noMeta>No Meta Information</ng-template>
+                        </section> -->
+
+            <mat-card-content>
+                <h3> Details: </h3>
+                <mat-list role="Details">
+                    <mat-list-item><em><mat-card-subtitle>Description:{{course.description}}</mat-card-subtitle></em></mat-list-item>
+                    <mat-divider></mat-divider> 
+                    <mat-list-item><em>lessons count: {{course.lessonsCount}}</em></mat-list-item>
+                    <mat-list-item><em>Duration: {{course.duration | transformTime}}</em></mat-list-item>
+                    <mat-list-item><div class="d-flex">
+                        <em>Locked Lessons:</em>
+                        <mat-icon>{{course.containsLockedLessons ? 'check_circle': 'cancel'}}</mat-icon>
+                    </div>
+                    </mat-list-item>
+                    <mat-list-item><em>lessons count: {{course.lessonsCount}}</em></mat-list-item>
+                    <mat-list-item><em>Status: {{course.status}}</em></mat-list-item>
+                    <mat-list-item><em>LaunchDate: {{course.launchDate | date}}</em></mat-list-item>
+                </mat-list>
+                    <mat-divider></mat-divider>
+                        
+                <section class="d-flex">
+                    <app-rating [rating]="course.rating"></app-rating>
+                    <mat-chip-listbox aria-label="tags">
+                        <mat-chip *ngFor="let tag of course.tags" color="accent">{{tag}}</mat-chip>
+                    </mat-chip-listbox>
+                </section>
+                <mat-divider></mat-divider>
+
+                <ng-container *ngIf="course?.meta as meta; noMeta">
+                    <app-skill-box [skills]="meta.skills"></app-skill-box>
+                </ng-container>
+
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" [routerLink]="['courses']">Back to courses</button>
+                </mat-card-actions>
+            </mat-card>
+        </section>
+
+        <section class="right-side">
+            <mat-card class="mat-elevation-z1"></mat-card>
+        </section>
+
+    </section>
+</app-shared-loader>
+    
+

@@ -1,4 +1,5 @@
-<h1 class="main-title">Our Courses</h1>
+<section class="main main-container">
+    <h1 class="main-title">Our Courses</h1>
 
     <app-shared-loader>
         <main *ngIf="courses$ as courses" class="courses-list">
@@ -6,5 +7,7 @@
         </main>
     </app-shared-loader>
 
-<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</section>
+
 
