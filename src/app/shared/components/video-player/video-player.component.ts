@@ -5,7 +5,6 @@ import {
   Input,
   ViewChild,
   OnDestroy,
-  Renderer2
 } from '@angular/core';
 
 import { MatTooltip } from '@angular/material/tooltip';
@@ -28,7 +27,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() title?: string;
   @Input() unmuted = false;
   @Input() autoplay = false;
-  @ViewChild('videoPlayer') videoElementRef!: ElementRef; 
+  @ViewChild('videoPlayer', { static: true }) videoElementRef!: ElementRef; 
   @ViewChild(MatTooltip) tooltip!: MatTooltip;
 
   videoPlayer!: HTMLVideoElement;
@@ -38,7 +37,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   private hls = new Hls();
   private defaultPlaybackRate = 0;
   
-  constructor(private renderer: Renderer2, private playerService: VideoPlayerService) { }
+  constructor(private playerService: VideoPlayerService) { }
 
   
   ngAfterViewInit(): void {
@@ -71,7 +70,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     else if (this.videoPlayer.canPlayType(HLS_MEDIA_TYPE)) {
       this.videoPlayer.src = this.url;
     }
-    console.log(this.url, this.title, this.id);
+    // console.log(this.url, this.title, this.id);
   }
 
   getProgress(): number {

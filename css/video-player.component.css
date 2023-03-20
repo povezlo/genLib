@@ -1,0 +1,24 @@
+#videoContainer {
+  position: relative;
+  text-align: center;
+}
+
+#videoContainer > h3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.tooltip-playback-ratio {
+  width: 100%;
+  height: 0;
+  text-align: right;
+}

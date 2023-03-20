@@ -1,0 +1,16 @@
+h2, img {
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: .9rem;
+  font-style: italic;
+}
+
+p .status-unlocked {
+  color: #14a314;
+}
+
+p .status-locked {
+  color: red;
+}
