@@ -1,14 +1,15 @@
 <app-shared-loader>
-    <section *ngIf="course$ | async as course" class=" main preview-course">
+    <section *ngIf="course" class=" main preview-course">
         <section class="left-side">
             <mat-card class="mat-elevation-z1">
                 <mat-card-header>
                 <mat-card-title><h1>{{course.title}}</h1></mat-card-title>
             </mat-card-header>
 
-            <ng-container *ngIf="course.lessons[0] as courseVideoPreview">
+            <ng-container *ngIf="currentLesson$ | async as courseVideoPreview">
                 <app-video-player
                     [url]="courseVideoPreview.link"
+                    [id]="courseVideoPreview.id"
                     [poster]="courseVideoPreview.previewImageLink"
                     [title]="courseVideoPreview.title"
                     [autoplay]="true"
@@ -63,7 +64,7 @@
 
         <section class="right-side">
             <mat-card class="mat-elevation-z1" *ngIf="course.lessons as lessons">
-                <app-video-lessons [lessons]="lessons"></app-video-lessons>
+                <app-video-lessons [lessons]="lessons" (getOrder)="switchLesson($event)"></app-video-lessons>
             </mat-card>
         </section>
 

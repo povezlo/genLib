@@ -8,6 +8,8 @@ import {
   Renderer2
 } from '@angular/core';
 import { MatTooltip } from '@angular/material/tooltip';
+import { Subscription } from 'rxjs';
+import { VideoPlayerService } from '../../services';
 import Hls from 'hls.js';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
@@ -29,14 +31,22 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
 
   videoPlayer!: HTMLVideoElement;
 
+  private readonly subscription = new Subscription();
+
   private hls = new Hls();
   private defaultPlaybackRate = 0;
   
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private playerService: VideoPlayerService) { }
 
   
   ngAfterViewInit(): void {
     this.initVideoElement();
+
+    const updateVideoSub = this.playerService.updateVideoPlayerStart$.subscribe(() => {
+      this.initVideoElement();
+    })
+
+    this.subscription.add(updateVideoSub);
   }
 
   initVideoElement(): void {
@@ -59,6 +69,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     else if (this.videoPlayer.canPlayType(HLS_MEDIA_TYPE)) {
       this.videoPlayer.src = this.url;
     }
+    console.log(this.url, this.title, this.id);
   }
 
   getProgress(): number {
@@ -96,5 +107,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     if (this.hls) {
       this.hls.destroy();
     }
+    this.subscription.unsubscribe();
   }
 }

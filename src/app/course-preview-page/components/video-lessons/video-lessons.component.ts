@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ILesson } from '../../../shared/interfaces';
 
 @Component({
@@ -8,4 +8,9 @@ import { ILesson } from '../../../shared/interfaces';
 })
 export class VideoLessonsComponent {
   @Input() lessons: ILesson[] = [];
+  @Output() getOrder = new EventEmitter<number>();
+
+  getOrders(index: number): void {
+    this.getOrder.emit(index);
+  }
 }
