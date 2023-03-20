@@ -13,4 +13,8 @@ export class VideoLessonsComponent {
   getOrders(index: number): void {
     this.getOrder.emit(index);
   }
+
+  trackByFn(index: number, item: ILesson) {
+    return item.id;
+  }
 }

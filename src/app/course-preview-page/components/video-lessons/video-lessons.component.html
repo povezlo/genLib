@@ -1,7 +1,7 @@
 <h2>Lessons ({{lessons.length}})</h2>
 <mat-divider></mat-divider>
 <section *ngIf="lessons; noLessons">
-    <div *ngFor="let lesson of lessons; let i = index">
+    <div *ngFor="let lesson of lessons; let i = index; trackBy: trackByFn">
         <h4>{{lesson.order}}. {{lesson.title}}</h4>
         <img 
             [src]="lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'"
