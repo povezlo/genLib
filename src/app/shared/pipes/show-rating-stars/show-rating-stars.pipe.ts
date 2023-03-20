@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'showStar'
 })
-export class ShowStarPipe implements PipeTransform {
+export class ShowRatingStarPipe implements PipeTransform {
 
   transform(rating = 0, starPosition: number): unknown {
 

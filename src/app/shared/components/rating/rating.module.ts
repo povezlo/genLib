@@ -5,10 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { RatingComponent } from './rating.component';
-import { ShowStarPipe } from './pipe/show-star.pipe';
+import { ShowRatingStarPipe } from '../../pipes';
 
 @NgModule({
-  declarations: [RatingComponent, ShowStarPipe],
+  declarations: [RatingComponent, ShowRatingStarPipe],
   imports: [CommonModule, MatButtonModule, MatIconModule],
   exports: [RatingComponent],
 })

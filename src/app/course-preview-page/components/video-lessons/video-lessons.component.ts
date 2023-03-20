@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { ILesson } from '../../../shared/interfaces';
 
 @Component({

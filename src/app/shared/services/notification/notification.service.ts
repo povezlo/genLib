@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { NotificationComponent } from './components';
+import { NotificationComponent } from '../../components/notification';
+
 
 export const DELAY_TIME_3000 = 3000;
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 

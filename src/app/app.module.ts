@@ -9,7 +9,6 @@ import { FooterModule } from './footer/footer.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { NotificationModule } from './shared';
 
 import { PROVIDERS } from './providers';
 
@@ -24,8 +23,7 @@ import { PROVIDERS } from './providers';
     HttpClientModule,
     HeaderModule,
     FooterModule,
-    SharedModule,
-    NotificationModule.forRoot()
+    SharedModule
   ],
   providers: PROVIDERS,
   bootstrap: [AppComponent]
