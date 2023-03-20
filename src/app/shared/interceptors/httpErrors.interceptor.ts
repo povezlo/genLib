@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { throwError } from 'rxjs';
 import { NotificationService } from '../services/notification/notification.service';
 import { LoaderService } from '../services';
 import { SharedLoaderState } from '../components';
@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         console.error(`Error: ${error.status}\nMessage: ${errorMessage}`);
         this.notification.error(`Error: ${errorMessage}`)
         this.loader.loaderStateSource$.next(this.sharedLoaderState.error);
-        return EMPTY;
+        return throwError(() => errorMessage);
       })
     );
   }

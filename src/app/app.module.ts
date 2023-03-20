@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,9 +9,9 @@ import { FooterModule } from './footer/footer.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { NotificationModule, TokenInterceptor, ErrorInterceptor } from './shared';
+import { NotificationModule } from './shared';
 
-import { environment } from 'src/environments/environment';
+import { PROVIDERS } from './providers';
 
 @NgModule({
   declarations: [
@@ -27,26 +27,7 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     NotificationModule.forRoot()
   ],
-    providers: [
-    {
-      provide: 'ENV_API',
-      useValue: environment.apiURL,
-    },
-    {
-      provide: 'BASE_URL',
-      useValue: environment.baseURL,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    }
-  ],
+  providers: PROVIDERS,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

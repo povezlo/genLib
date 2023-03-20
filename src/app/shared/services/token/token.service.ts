@@ -12,7 +12,6 @@ export class TokenService {
   }
 
   setToken(token: string): void {
-    console.log(token);
     localStorage.setItem(TOKEN_KEY, token);
   }
 
