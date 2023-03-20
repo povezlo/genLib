@@ -7,10 +7,12 @@ import {
   OnDestroy,
   Renderer2
 } from '@angular/core';
+
 import { MatTooltip } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { VideoPlayerService } from '../../services';
 import Hls from 'hls.js';
+
+import { VideoPlayerService } from '../../services';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
 

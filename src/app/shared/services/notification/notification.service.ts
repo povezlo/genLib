@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { NotificationComponent } from './components';
 
 export const DELAY_TIME_3000 = 3000;

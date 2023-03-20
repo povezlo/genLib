@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { CoursesService, ICoursesResponse, ICourses, LoaderService } from '../shared';
+
+import { Observable, Subscription } from 'rxjs';
+
+import { CoursesService, LoaderService } from '../shared/services';
 import { SharedLoaderState } from '../shared/components';
+import { ICoursesResponse, ICourses } from '../shared/interfaces';
 
 @Component({
   selector: 'app-courses-page',

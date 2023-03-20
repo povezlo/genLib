@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+
+import { BehaviorSubject, Observable } from 'rxjs';
+
 import { SharedLoaderState } from '../../components';
 
 @Injectable({
@@ -7,5 +9,9 @@ import { SharedLoaderState } from '../../components';
 })
 export class LoaderService {
   loaderStateSource$ = new BehaviorSubject<SharedLoaderState>(SharedLoaderState.loading);
-  loaderState$ = this.loaderStateSource$.asObservable();
+  loaderState$: Observable<SharedLoaderState>;
+
+  constructor() {
+    this.loaderState$ = this.loaderStateSource$.asObservable();
+  }
 }

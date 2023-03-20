@@ -1,6 +1,8 @@
-import { ApiClientBaseService } from '../api/api-client-base.service';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
+import { ApiClientBaseService } from '../api/api-client-base.service';
 import { ICoursesResponse, ICoursePreviewResponse } from '../../interfaces'
 
 @Injectable({

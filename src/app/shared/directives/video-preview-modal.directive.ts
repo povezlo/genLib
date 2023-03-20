@@ -5,6 +5,7 @@ import {
   Input,
   ViewContainerRef
   } from '@angular/core';
+  
 import { VideoPreviewComponent } from '../../course-preview-page/components';
 import { ICourseVideoPreview } from '../interfaces';
 

@@ -8,13 +8,13 @@ interface ICommonInfo {
 }
 
 export interface ICourses extends ICommonInfo  {
-videoPreview: any;
-            tags: string[];
-            launchDate: string;
-            description: string;
-            rating: number;
-            lessonsCount: number;
-            containsLockedLessons: boolean;
+    videoPreview: any;
+    tags: string[];
+    launchDate: string;
+    description: string;
+    rating: number;
+   lessonsCount: number;
+    containsLockedLessons: boolean;
 }
 
 export interface ICoursePreview extends ICourses {

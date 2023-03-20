@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ICourses } from 'src/app/shared';
 
+import { ICourses } from '../../../shared/interfaces';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { LoaderService } from '../../services';
 import { SharedLoaderState } from './enum';
 

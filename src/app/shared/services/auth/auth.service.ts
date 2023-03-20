@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+
 import { firstValueFrom } from 'rxjs';
-import { TokenService } from '../token/token.service';
+
 import { ApiClientBaseService } from '../api/api-client-base.service';
-import { ITokenResponse } from 'src/app/shared/interfaces';
 import { NotificationService } from '../notification/notification.service';
+import { TokenService } from '../token/token.service';
+import { ITokenResponse } from 'src/app/shared/interfaces';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
+
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { NotificationService } from '../services/notification/notification.service';
-import { LoaderService } from '../services';
+
+import { LoaderService, NotificationService } from '../services';
 import { SharedLoaderState } from '../components';
 
 @Injectable()

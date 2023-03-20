@@ -1,5 +1,6 @@
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { APP_INITIALIZER } from "@angular/core";
+
 import { TokenInterceptor, ErrorInterceptor, initApp, AuthService } from "./shared";
 import { environment } from "src/environments/environment";
 

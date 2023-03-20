@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
-import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CoursesService, ILesson, LoaderService, VideoPlayerService } from '../shared';
-import { ICoursePreviewResponse } from '../shared';
+
+import { CoursesService, LoaderService, VideoPlayerService } from '../shared/services';
+import { ICoursePreviewResponse, ILesson } from '../shared/interfaces';
 import { SharedLoaderState } from '../shared/components';
 @Component({
   selector: 'app-course-preview-page',
