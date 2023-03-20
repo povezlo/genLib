@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
+import { VideoPlayerService } from 'src/app/shared';
 import { ILesson } from '../../../shared/interfaces';
 
 @Component({
@@ -7,15 +8,22 @@ import { ILesson } from '../../../shared/interfaces';
   templateUrl: './video-lessons.component.html',
   styleUrls: ['./video-lessons.component.scss']
 })
-export class VideoLessonsComponent {
-  @Input() lessons: ILesson[] = [];
-  @Output() getOrder = new EventEmitter<number>();
+export class VideoLessonsComponent implements AfterViewInit {
+  lessonsPlaylist: ILesson[] = [];
+
+  constructor(private videoService: VideoPlayerService) {}
+
+  ngAfterViewInit(): void {
+    this.lessonsPlaylist = this.videoService.getLessonsPlayList();
+  }
 
   getOrders(index: number): void {
-    this.getOrder.emit(index);
+    const lessson = this.lessonsPlaylist.find(lesson => lesson.order === index);
+    console.log('get orders');
+    if(lessson) this.videoService.setVideoLesson(lessson);
   }
 
   trackByFn(index: number, item: ILesson) {
-    return item.id;
+    return item.order;
   }
 }

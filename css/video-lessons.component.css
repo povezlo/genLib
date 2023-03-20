@@ -2,6 +2,10 @@ h2, img {
   margin-bottom: 1rem;
 }
 
+h2:hover, img:hover {
+  cursor: pointer;
+}
+
 p {
   font-size: .9rem;
   font-style: italic;

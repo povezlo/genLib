@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { CoursesService, LoaderService, VideoPlayerService } from '../shared/services';
@@ -12,11 +12,9 @@ import { SharedLoaderState } from '../shared/components';
   templateUrl: './course-preview-page.component.html',
   styleUrls: ['./course-preview-page.component.scss']
 })
-export class CoursePreviewPageComponent implements OnInit, OnDestroy {
+export class CoursePreviewPageComponent implements AfterViewInit, OnDestroy {
   course: ICoursePreviewResponse | null = null; 
-
-  currentLessonSubject$ = new BehaviorSubject<ILesson | null>(null); 
-  currentLesson$: Observable<ILesson | null> | null = null; 
+  mainVideoLesson: ILesson | null = null;
   
   sharedLoaderState = SharedLoaderState;
 
@@ -27,11 +25,9 @@ export class CoursePreviewPageComponent implements OnInit, OnDestroy {
     private coursesService: CoursesService,
     private loader: LoaderService,
     private videoService: VideoPlayerService
-  ) {
-    this.currentLesson$ = this.currentLessonSubject$.asObservable(); 
-  }
+  ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.loader.loaderStateSource$.next(SharedLoaderState.loading);
     const courseSub = this.route.params
     .pipe(
@@ -46,17 +42,12 @@ export class CoursePreviewPageComponent implements OnInit, OnDestroy {
       })
     ).subscribe(res => {
       this.course = res;
-      this.currentLessonSubject$.next(this.course.lessons[0]);
+      this.mainVideoLesson = this.course.lessons[0];
+      this.videoService.setVideoLesson(this.mainVideoLesson);
+      this.videoService.setLessonsPlaylist(this.course.lessons);
     });
 
     this.subscription.add(courseSub);
-  }
-
-  switchLesson(index: number): void {
-    if(!this.course) return;
-    const order = this.course.lessons.find(lesson => lesson.order === index)?.order || 0;
-    this.currentLessonSubject$.next(this.course.lessons[order]);
-    this.videoService.updateVideoPlayerStartSource$.next();
   }
 
   ngOnDestroy(): void {

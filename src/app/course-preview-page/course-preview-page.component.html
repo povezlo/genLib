@@ -6,12 +6,12 @@
                 <mat-card-title><h1>{{course.title}}</h1></mat-card-title>
             </mat-card-header>
 
-            <ng-container *ngIf="currentLesson$ | async as courseVideoPreview">
+            <ng-container *ngIf="mainVideoLesson">
                 <app-video-player
-                    [url]="courseVideoPreview.link"
-                    [id]="courseVideoPreview.id"
-                    [poster]="courseVideoPreview.previewImageLink"
-                    [title]="courseVideoPreview.title"
+                    [url]="mainVideoLesson.link"
+                    [id]="mainVideoLesson.id"
+                    [poster]="mainVideoLesson.previewImageLink"
+                    [title]="mainVideoLesson.title"
                     [autoplay]="true"
                 >
                 </app-video-player>
@@ -63,8 +63,8 @@
         </section>
 
         <section class="right-side">
-            <mat-card class="mat-elevation-z1" *ngIf="course.lessons as lessons">
-                <app-video-lessons [lessons]="lessons" (getOrder)="switchLesson($event)"></app-video-lessons>
+            <mat-card class="mat-elevation-z1">
+                <app-video-lessons></app-video-lessons>
             </mat-card>
         </section>
 

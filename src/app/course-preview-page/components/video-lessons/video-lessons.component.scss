@@ -1,6 +1,9 @@
 
 h2, img {
   margin-bottom: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 p {

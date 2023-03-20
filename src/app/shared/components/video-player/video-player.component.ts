@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import Hls from 'hls.js';
 
 import { VideoPlayerService } from '../../services';
+import { ILesson } from '../../interfaces';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
 
@@ -42,23 +43,23 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   
   ngAfterViewInit(): void {
     this.initVideoElement();
+    this.setConfigs();
+    this.startVideoPlayer();
 
-    const updateVideoSub = this.playerService.updateVideoPlayerStart$.subscribe(() => {
-      this.initVideoElement();
-    })
+    const updateVideoSub = this.playerService.getVideoLesson()
+    .subscribe(lesson => {
+      if(!lesson) return;
+      this.updateVideoLesson(lesson);
+    });
 
     this.subscription.add(updateVideoSub);
   }
 
-  initVideoElement(): void {
+  private initVideoElement(): void {
     this.videoPlayer = this.videoElementRef?.nativeElement;
-    
-    if(this.poster)  this.videoPlayer.poster = this.poster;
-    this.videoPlayer.autoplay = this.autoplay;
-    this.videoPlayer.muted = this.unmuted;
-    this.defaultPlaybackRate = this.videoPlayer.defaultPlaybackRate;
-    this.videoPlayer.currentTime = this.getProgress();
+  }
 
+  private startVideoPlayer(): void {
     if (Hls.isSupported()) {
       this.hls.loadSource(this.url);
       this.hls.attachMedia(this.videoPlayer);
@@ -70,14 +71,29 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     else if (this.videoPlayer.canPlayType(HLS_MEDIA_TYPE)) {
       this.videoPlayer.src = this.url;
     }
-    // console.log(this.url, this.title, this.id);
   }
 
-  getProgress(): number {
+  private setConfigs(lesson?: ILesson): void {
+    if(this.poster)  this.videoPlayer.poster = lesson ? lesson.previewImageLink + '/cover.webp' : this.poster;
+    this.videoPlayer.autoplay = lesson ? true : this.autoplay;
+    this.videoPlayer.muted = lesson ? true : this.unmuted;
+    this.defaultPlaybackRate = this.videoPlayer.defaultPlaybackRate;
+    this.videoPlayer.currentTime = this.getProgress();
+  }
+
+  private updateVideoLesson(lesson: ILesson): void {
+    this.id = lesson.id;
+    this.title = lesson.title;
+    this.url = lesson.link;
+    this.setConfigs(lesson);
+    this.startVideoPlayer();
+  }
+
+  private getProgress(): number {
     return Number(localStorage.getItem(this.id)) || 0;
   }
 
-  saveProgress(): void {
+  private saveProgress(): void {
     localStorage.setItem(this.id, String(this.videoPlayer.currentTime));
   }
 
