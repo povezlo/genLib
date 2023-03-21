@@ -29,7 +29,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() unmuted = false;
   @Input() autoplay = false;
   @ViewChild('videoPlayer', { static: true }) videoElementRef!: ElementRef; 
-  @ViewChild(MatTooltip) tooltip!: MatTooltip;
+  @ViewChild(MatTooltip, { static: true }) tooltip!: MatTooltip;
 
   videoPlayer!: HTMLVideoElement;
 
@@ -63,7 +63,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     if (Hls.isSupported()) {
       this.hls.loadSource(this.url);
       this.hls.attachMedia(this.videoPlayer);
-      this.saveProgress();
+      this.videoPlayer.currentTime = this.getProgress();
 
       this.videoPlayer.addEventListener('pause', () => this.saveProgress());
     }
@@ -76,9 +76,8 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   private setConfigs(lesson?: ILesson): void {
     if(this.poster)  this.videoPlayer.poster = lesson ? lesson.previewImageLink + '/cover.webp' : this.poster;
     this.videoPlayer.autoplay = lesson ? true : this.autoplay;
-    this.videoPlayer.muted = lesson ? true : this.unmuted;
+    this.videoPlayer.muted = lesson ? false : this.unmuted;
     this.defaultPlaybackRate = this.videoPlayer.defaultPlaybackRate;
-    this.videoPlayer.currentTime = this.getProgress();
   }
 
   private updateVideoLesson(lesson: ILesson): void {

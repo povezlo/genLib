@@ -8,6 +8,6 @@ import { ICourseVideoPreview } from 'src/app/shared';
 })
 export class VideoPreviewComponent {
   @Input() video?: ICourseVideoPreview | undefined = undefined;
-  @Input() unmuted = false;
+  @Input() unmuted = true;
   @Input() autoPlay = false;
 }

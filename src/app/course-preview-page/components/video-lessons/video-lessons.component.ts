@@ -19,7 +19,6 @@ export class VideoLessonsComponent implements AfterViewInit {
 
   getOrders(index: number): void {
     const lessson = this.lessonsPlaylist.find(lesson => lesson.order === index);
-    console.log('get orders');
     if(lessson) this.videoService.setVideoLesson(lessson);
   }
 
