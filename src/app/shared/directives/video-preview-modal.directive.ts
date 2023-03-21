@@ -6,7 +6,7 @@ import {
   ViewContainerRef
   } from '@angular/core';
   
-import { VideoPreviewComponent } from '../../course-preview-page/components';
+import { VideoPreviewPopupComponent } from '../../course-preview-page/components';
 import { ICourseVideoPreview } from '../interfaces';
 
 @Directive({
@@ -14,7 +14,7 @@ import { ICourseVideoPreview } from '../interfaces';
 })
 export class VideoPreviewModalDirective {
   @Input('appVideoPreviewModal') videoPreview: ICourseVideoPreview | undefined = undefined;
-  private componentRef: ComponentRef<VideoPreviewComponent> | null = null;
+  private componentRef: ComponentRef<VideoPreviewPopupComponent> | null = null;
 
   constructor(private viewContainerRef: ViewContainerRef) {}
 
@@ -31,10 +31,11 @@ export class VideoPreviewModalDirective {
   showPopup() {
     this.viewContainerRef.clear();
 
-    const componentFactory = this.viewContainerRef.createComponent(VideoPreviewComponent);
+    const componentFactory = this.viewContainerRef.createComponent(VideoPreviewPopupComponent);
     componentFactory.instance.video = this.videoPreview;
     componentFactory.instance.unmuted = true;
     componentFactory.instance.autoPlay = true;
+    componentFactory.instance.isPopup = true;
     this.componentRef = componentFactory;
   }
 

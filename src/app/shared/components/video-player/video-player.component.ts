@@ -28,6 +28,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() title?: string;
   @Input() unmuted = false;
   @Input() autoplay = false;
+  @Input() isPopup = false;
   @ViewChild('videoPlayer', { static: true }) videoElementRef!: ElementRef; 
   @ViewChild(MatTooltip, { static: true }) tooltip!: MatTooltip;
 
@@ -81,6 +82,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateVideoLesson(lesson: ILesson): void {
+    if(this.isPopup) return;
     this.id = lesson.id;
     this.title = lesson.title;
     this.url = lesson.link;
@@ -123,6 +125,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     if (this.hls) {
       this.hls.destroy();
     }
+    this.playerService.resetVideoLesson();
     this.subscription.unsubscribe();
   }
 }

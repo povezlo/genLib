@@ -27,4 +27,8 @@ export class VideoPlayerService {
   setVideoLesson(videoLesson: ILesson) {
     return this.currentVideoSubject.next(videoLesson);
   }
+
+  resetVideoLesson(): void {
+    this.currentVideoSubject.next(null);
+  }
 }

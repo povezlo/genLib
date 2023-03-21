@@ -10,7 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; 
 
-import { RatingModule, VideoPlayerModule, VideoPreviewComponent } from '../shared/components';
+import { RatingModule, VideoPlayerModule, VideoPreviewPopupComponent } from '../shared/components';
 import { TransformTimePipe } from './pipes/transform-time/transform-time.pipe';
 
 const MATERIAL_MODULES = [
@@ -26,7 +26,7 @@ const MATERIAL_MODULES = [
 ]
 
 @NgModule({
-  declarations: [VideoPreviewComponent, TransformTimePipe],
+  declarations: [VideoPreviewPopupComponent, TransformTimePipe],
   imports: [
     CommonModule,
     VideoPlayerModule,
@@ -36,7 +36,7 @@ const MATERIAL_MODULES = [
     CommonModule,
     VideoPlayerModule,
     ...MATERIAL_MODULES,
-    VideoPreviewComponent,
+    VideoPreviewPopupComponent,
     TransformTimePipe
   ]
 })
