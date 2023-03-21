@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 
 import { VideoLessonsPlayerService } from 'src/app/shared';
 import { ILesson } from '../../../shared/interfaces';
@@ -8,13 +8,13 @@ import { ILesson } from '../../../shared/interfaces';
   templateUrl: './playlist-lessons.component.html',
   styleUrls: ['./playlist-lessons.component.scss']
 })
-export class PlaylistLessonsComponent implements AfterViewInit {
+export class PlaylistLessonsComponent implements OnInit {
   lessonsPlaylist: ILesson[] = [];
   selectedLessonOrder = 1;
 
   constructor(private videoService: VideoLessonsPlayerService) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.lessonsPlaylist = this.videoService.getLessonsPlayList();
   }
 

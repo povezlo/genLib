@@ -6,6 +6,7 @@ import {
   ViewChild,
   OnDestroy,
   ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { MatTooltip } from '@angular/material/tooltip';
@@ -30,10 +31,10 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() title?: string;
   @Input() unmuted = false;
   @Input() autoplay = false;
-  @Input() isPopup = false;
-  @ViewChild('videoPlayer', { static: true }) videoElementRef!: ElementRef; 
-  @ViewChild(MatTooltip, { static: true }) tooltip!: MatTooltip;
-
+  
+  @ViewChild('videoPlayer') videoElementRef!: ElementRef; 
+  @ViewChild(MatTooltip) tooltip!: MatTooltip;
+  
   videoPlayer!: HTMLVideoElement;
 
   private readonly subscription = new Subscription();
@@ -41,9 +42,8 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   private hls = new Hls();
   private defaultPlaybackRate = 0;
   
-  constructor(private playerService: VideoLessonsPlayerService) { }
+  constructor(private playerService: VideoLessonsPlayerService, private cdr: ChangeDetectorRef) { }
 
-  
   ngAfterViewInit(): void {
     this.initVideoElement();
     this.setConfigs();
@@ -84,12 +84,12 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateVideoLesson(lesson: ILesson): void {
-    if(this.isPopup) return;
     this.id = lesson.id;
     this.title = lesson.title;
     this.url = lesson.link;
     this.setConfigs(lesson);
     this.startVideoPlayer();
+    this.cdr.markForCheck();
   }
 
   private getProgress(): number {

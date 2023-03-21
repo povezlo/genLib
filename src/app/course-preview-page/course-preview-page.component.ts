@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { SharedLoaderState } from '../shared/components';
   templateUrl: './course-preview-page.component.html',
   styleUrls: ['./course-preview-page.component.scss']
 })
-export class CoursePreviewPageComponent implements AfterViewInit {
+export class CoursePreviewPageComponent implements OnInit {
   course$: Observable<ICoursePreviewResponse> | null = null; 
   mainVideoLesson: ILesson | null = null;
   
@@ -25,9 +25,9 @@ export class CoursePreviewPageComponent implements AfterViewInit {
     private videoService: VideoLessonsPlayerService
   ) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.loader.loaderStateSource$.next(SharedLoaderState.loading);
-   
+  
     this.course$ = this.route.params
     .pipe(
       map((params: Params) => params['id']),

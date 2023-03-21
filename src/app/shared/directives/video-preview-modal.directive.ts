@@ -35,7 +35,6 @@ export class VideoPreviewModalDirective {
     componentFactory.instance.video = this.videoPreview;
     componentFactory.instance.unmuted = true;
     componentFactory.instance.autoPlay = true;
-    componentFactory.instance.isPopup = true;
     this.componentRef = componentFactory;
   }
 

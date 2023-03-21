@@ -10,5 +10,4 @@ export class VideoPreviewPopupComponent {
   @Input() video?: ICourseVideoPreview | undefined = undefined;
   @Input() unmuted = true;
   @Input() autoPlay = false;
-  @Input() isPopup = true;
 }

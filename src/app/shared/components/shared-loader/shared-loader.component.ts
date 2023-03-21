@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -10,13 +10,11 @@ import { SharedLoaderState } from './enum';
   templateUrl: './shared-loader.component.html',
   styleUrls: ['./shared-loader.component.scss'],
 })
-export class SharedLoaderComponent implements OnInit {  
+export class SharedLoaderComponent {  
   sharedLoaderState = SharedLoaderState;
   state$: Observable<SharedLoaderState> | null = null;
 
-  constructor(private loader: LoaderService) {}
-
-  ngOnInit(): void {
+  constructor(private loader: LoaderService) {
     this.state$ = this.loader.loaderState$;
   }
 }
