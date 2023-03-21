@@ -33,7 +33,7 @@
 - token (для роботи з токенами)
 - Video-lessons-player (для роботи з плейлистом уроків)
 
-До 22.03.2023 планую додатково покрити тестами, та пофіксить деяки стилі
+До 22.03.2023 планую додатково покрити тестами
 
 This app was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 This project is educational. until 03/22/2023 I'm going to cover it with tests and fix all bugs, fix styles
