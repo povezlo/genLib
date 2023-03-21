@@ -4,11 +4,11 @@ import { VideoPlayerService } from 'src/app/shared';
 import { ILesson } from '../../../shared/interfaces';
 
 @Component({
-  selector: 'app-video-lessons',
-  templateUrl: './video-lessons.component.html',
-  styleUrls: ['./video-lessons.component.scss']
+  selector: 'app-playlist-lessons',
+  templateUrl: './playlist-lessons.component.html',
+  styleUrls: ['./playlist-lessons.component.scss']
 })
-export class VideoLessonsComponent implements AfterViewInit {
+export class PlaylistLessonsComponent implements AfterViewInit {
   lessonsPlaylist: ILesson[] = [];
 
   constructor(private videoService: VideoPlayerService) {}
