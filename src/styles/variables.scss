@@ -14,5 +14,7 @@ $on-success: #ffffff;
 
 // Layout
 $header-height: 4rem;
-$max-width: 60rem;
+$footer-height: 5rem;
+$main-height: calc(100vh - $header-height - $footer-height);
+$max-width: 50rem;
 $min-height: calc(100vh - $header-height);
