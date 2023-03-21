@@ -29,14 +29,16 @@
                     <mat-divider></mat-divider> 
                     <mat-list-item><h3></h3>Description: {{course.description}}</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item><em>lessons count: {{course.lessonsCount}}</em></mat-list-item>
+                    <mat-list-item><em>Lessons count: {{course.lessonsCount}}</em></mat-list-item>
                     <mat-list-item><em>Duration: {{course.duration | transformTime}}</em></mat-list-item>
                     <mat-list-item><div class="d-flex">
-                        <em>Locked Lessons:</em>
-                        <mat-icon>{{course.containsLockedLessons ? 'check_circle': 'cancel'}}</mat-icon>
+                        <em>Contains locked lessons:</em>
+                        <mat-icon
+                            [color]="course.containsLockedLessons ? 'primary' : 'warn'">
+                            {{course.containsLockedLessons ? 'check_circle': 'cancel'}}
+                        </mat-icon>
                     </div>
                     </mat-list-item>
-                    <mat-list-item><em>lessons count: {{course.lessonsCount}}</em></mat-list-item>
                     <mat-list-item><em>Status: {{course.status}}</em></mat-list-item>
                     <mat-list-item><em>LaunchDate: {{course.launchDate | date}}</em></mat-list-item>
                 </mat-list>

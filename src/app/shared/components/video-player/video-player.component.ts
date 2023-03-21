@@ -34,7 +34,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   
   @ViewChild('videoPlayer') videoElementRef!: ElementRef; 
   @ViewChild(MatTooltip) tooltip!: MatTooltip;
-  
+
   videoPlayer!: HTMLVideoElement;
 
   private readonly subscription = new Subscription();
