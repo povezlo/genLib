@@ -1,5 +1,5 @@
 <app-shared-loader>
-    <section *ngIf="course" class=" main preview-course">
+    <section *ngIf="course$ | async as course" class=" main preview-course">
         <section class="left-side">
             <mat-card class="mat-elevation-z1">
                 <mat-card-header>

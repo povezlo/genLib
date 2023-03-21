@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 
-import { Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable'
 
-import { CoursesService, LoaderService, VideoPlayerService } from '../shared/services';
+import { CoursesService, LoaderService, VideoLessonsPlayerService } from '../shared/services';
 import { ICoursePreviewResponse, ILesson } from '../shared/interfaces';
 import { SharedLoaderState } from '../shared/components';
 @Component({
@@ -12,45 +12,38 @@ import { SharedLoaderState } from '../shared/components';
   templateUrl: './course-preview-page.component.html',
   styleUrls: ['./course-preview-page.component.scss']
 })
-export class CoursePreviewPageComponent implements AfterViewInit, OnDestroy {
-  course: ICoursePreviewResponse | null = null; 
+export class CoursePreviewPageComponent implements AfterViewInit {
+  course$: Observable<ICoursePreviewResponse> | null = null; 
   mainVideoLesson: ILesson | null = null;
   
   sharedLoaderState = SharedLoaderState;
-
-  private readonly subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
     private coursesService: CoursesService,
     private loader: LoaderService,
-    private videoService: VideoPlayerService
+    private videoService: VideoLessonsPlayerService
   ) {}
 
   ngAfterViewInit(): void {
     this.loader.loaderStateSource$.next(SharedLoaderState.loading);
-    const courseSub = this.route.params
+   
+    this.course$ = this.route.params
     .pipe(
       map((params: Params) => params['id']),
       switchMap(id => this.coursesService.getPreviewCourse(id)),
-      tap((res: ICoursePreviewResponse) => {
-        if(res) {
+      tap((course: ICoursePreviewResponse) => {
+        if(course) {
           this.loader.loaderStateSource$.next(SharedLoaderState.loaded);
+
+        this.mainVideoLesson = course.lessons[0];
+        this.videoService.setVideoLesson(this.mainVideoLesson);
+        this.videoService.setLessonsPlaylist(course.lessons);
+
         } else {
           this.loader.loaderStateSource$.next(SharedLoaderState.noData);
         }
       })
-    ).subscribe(res => {
-      this.course = res;
-      this.mainVideoLesson = this.course.lessons[0];
-      this.videoService.setVideoLesson(this.mainVideoLesson);
-      this.videoService.setLessonsPlaylist(this.course.lessons);
-    });
-
-    this.subscription.add(courseSub);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    )
   }
 }

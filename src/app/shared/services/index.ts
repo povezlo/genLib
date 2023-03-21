@@ -4,5 +4,5 @@ export * from './auth';
 export * from './api';
 export * from './notification';
 export * from './loader';
-export * from './videoplayer';
+export * from './video-lessons-player';
 export * from './notification';

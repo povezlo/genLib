@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 
-import { VideoPlayerService } from 'src/app/shared';
+import { VideoLessonsPlayerService } from 'src/app/shared';
 import { ILesson } from '../../../shared/interfaces';
 
 @Component({
@@ -11,7 +11,7 @@ import { ILesson } from '../../../shared/interfaces';
 export class PlaylistLessonsComponent implements AfterViewInit {
   lessonsPlaylist: ILesson[] = [];
 
-  constructor(private videoService: VideoPlayerService) {}
+  constructor(private videoService: VideoLessonsPlayerService) {}
 
   ngAfterViewInit(): void {
     this.lessonsPlaylist = this.videoService.getLessonsPlayList();

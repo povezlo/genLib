@@ -7,7 +7,7 @@ import { ILesson } from '../../interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class VideoPlayerService {
+export class VideoLessonsPlayerService {
   private lessonsPlaylist: ILesson[] = [];
 
   private currentVideoSubject = new BehaviorSubject<ILesson | null>(null);

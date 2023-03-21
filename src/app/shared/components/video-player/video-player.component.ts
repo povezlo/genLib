@@ -11,7 +11,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import Hls from 'hls.js';
 
-import { VideoPlayerService } from '../../services';
+import { VideoLessonsPlayerService } from '../../services';
 import { ILesson } from '../../interfaces';
 
 const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
@@ -39,7 +39,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   private hls = new Hls();
   private defaultPlaybackRate = 0;
   
-  constructor(private playerService: VideoPlayerService) { }
+  constructor(private playerService: VideoLessonsPlayerService) { }
 
   
   ngAfterViewInit(): void {
