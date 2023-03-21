@@ -10,6 +10,7 @@ import { ILesson } from '../../../shared/interfaces';
 })
 export class PlaylistLessonsComponent implements AfterViewInit {
   lessonsPlaylist: ILesson[] = [];
+  selectedLessonOrder = 1;
 
   constructor(private videoService: VideoLessonsPlayerService) {}
 
@@ -17,7 +18,8 @@ export class PlaylistLessonsComponent implements AfterViewInit {
     this.lessonsPlaylist = this.videoService.getLessonsPlayList();
   }
 
-  getOrders(index: number): void {
+  getLessonOrders(index: number): void {
+    this.selectedLessonOrder = index;
     const lessson = this.lessonsPlaylist.find(lesson => lesson.order === index);
     if(lessson) this.videoService.setVideoLesson(lessson);
   }

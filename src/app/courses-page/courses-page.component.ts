@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
 import { Observable, Subscription } from 'rxjs';
 
 import { CoursesService, LoaderService } from '../shared/services';
@@ -11,7 +11,8 @@ import { ICoursesResponse, ICourses } from '../shared/interfaces';
 @Component({
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
-  styleUrls: ['./courses-page.component.scss']
+  styleUrls: ['./courses-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesPageComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -33,15 +34,13 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
         this.loader.loaderStateSource$.next(SharedLoaderState.noData);
         return;
       }
-      
-      const { courses } = res;
 
-      this.dataSource = new MatTableDataSource<ICourses>(courses);
+      this.dataSource = new MatTableDataSource<ICourses>(res.courses);
       this.dataSource.paginator = this.paginator;
       this.courses$ = this.dataSource.connect();
 
       this.loader.loaderStateSource$.next(SharedLoaderState.loaded);
-      } );
+      });
 
       this.subscription.add(coursesSub);
   }

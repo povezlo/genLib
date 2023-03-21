@@ -5,6 +5,7 @@ import {
   Input,
   ViewChild,
   OnDestroy,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { MatTooltip } from '@angular/material/tooltip';
@@ -19,7 +20,8 @@ const HLS_MEDIA_TYPE = 'application/vnd.apple.mpegurl';
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
-  styleUrls: ['./video-player.component.scss']
+  styleUrls: ['./video-player.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() id = '';
