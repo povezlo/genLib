@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { IHttpParams } from 'src/app/shared/interfaces';
+import { ENV_API, BASE_URL } from 'src/assets/injectTokens/injectTokens';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ import { IHttpParams } from 'src/app/shared/interfaces';
 export class ApiClientBaseService {
 
   constructor(
-    @Inject('ENV_API') private readonly apiUrl: string,
-    @Inject('BASE_URL') private readonly baseUrl: string,
+    @Inject(ENV_API) private readonly apiUrl: string,
+    @Inject(BASE_URL) private readonly baseUrl: string,
     private http: HttpClient,
     ) { }
 

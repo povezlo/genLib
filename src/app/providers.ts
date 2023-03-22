@@ -3,14 +3,15 @@ import { APP_INITIALIZER } from "@angular/core";
 
 import { TokenInterceptor, ErrorInterceptor, initApp, AuthService } from "./shared";
 import { environment } from "src/environments/environment";
+import { ENV_API, BASE_URL } from "src/assets/injectTokens/injectTokens";
 
 export const PROVIDERS = [
     {
-        provide: 'ENV_API',
+        provide: ENV_API,
         useValue: environment.apiURL,
     },
     {
-        provide: 'BASE_URL',
+        provide: BASE_URL,
         useValue: environment.baseURL,
     },
     {

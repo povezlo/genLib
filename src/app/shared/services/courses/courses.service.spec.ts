@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { ApiClientBaseService } from '../api';
 
 import { CoursesService } from './courses.service';
 
@@ -6,7 +7,9 @@ describe('CoursesService', () => {
   let service: CoursesService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [{ provide: ApiClientBaseService, useValue: {}}]
+    });
     service = TestBed.inject(CoursesService);
   });
 

@@ -6,11 +6,10 @@ describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [ FooterComponent ]
     })
-    .compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,12 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  
+  it('should display current year', () => {
+    component.currentData = new Date().getFullYear();
+    const copyright = fixture.nativeElement.querySelector('.app-page__footer-copyright');
+    expect(copyright.textContent).toContain(component.currentData);
   });
 });

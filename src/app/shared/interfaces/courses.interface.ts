@@ -1,4 +1,4 @@
-interface ICommonInfo {
+export interface ICommonInfo {
     id: string;
     title: string;
     duration: number;
