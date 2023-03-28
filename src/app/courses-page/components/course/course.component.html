@@ -1,13 +1,13 @@
 <mat-card *ngIf="course">
-    
-    <img
+
+    <img 
         mat-card-image
         [src]="course.previewImageLink + '/cover.webp'"
         [alt]="course.title"
         [appVideoPreviewModal]="course.meta.courseVideoPreview"
-        
+
     >
-    
+
     <mat-card-header>
         <mat-card-title>{{course.title}}</mat-card-title>
         <mat-card-subtitle>{{course.description}}</mat-card-subtitle>
