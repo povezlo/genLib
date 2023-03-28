@@ -1,0 +1,21 @@
+:host {
+  position: absolute;
+  background-color: white;
+  right: -80%;
+  z-index: 1001;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 20rem;
+  border: 1px solid #ede9e9;
+  border-radius: .4rem;
+}
+
+section .duration {
+  padding: .3rem;
+  font-size: 1rem;
+  color: grey;
+}

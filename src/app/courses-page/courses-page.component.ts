@@ -11,7 +11,6 @@ import { ICoursesResponse, ICourses } from '../shared/interfaces';
 @Component({
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
-  styleUrls: ['./courses-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesPageComponent implements OnInit, OnDestroy {
@@ -19,18 +18,18 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   courses$: Observable<ICourses[]> | null = null;
   dataSource: MatTableDataSource<ICourses> | null = null;
-  
+
   sharedLoaderState = SharedLoaderState;
 
   private readonly subscription = new Subscription();
 
-  constructor(private courses: CoursesService, private loader: LoaderService) {}
+  constructor(private courses: CoursesService, private loader: LoaderService) { }
 
   ngOnInit(): void {
-      this.loader.loaderStateSource$.next(SharedLoaderState.loading);
-      const coursesSub = this.courses.getCourses()?.subscribe((res: ICoursesResponse) => {
-      
-      if(!res) {
+    this.loader.loaderStateSource$.next(SharedLoaderState.loading);
+    const coursesSub = this.courses.getCourses()?.subscribe((res: ICoursesResponse) => {
+
+      if (!res) {
         this.loader.loaderStateSource$.next(SharedLoaderState.noData);
         return;
       }
@@ -40,14 +39,14 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       this.courses$ = this.dataSource.connect();
 
       this.loader.loaderStateSource$.next(SharedLoaderState.loaded);
-      });
+    });
 
-      this.subscription.add(coursesSub);
+    this.subscription.add(coursesSub);
   }
 
-    ngOnDestroy() {
-    if (this.dataSource) { 
-      this.dataSource.disconnect(); 
+  ngOnDestroy() {
+    if (this.dataSource) {
+      this.dataSource.disconnect();
       this.subscription.unsubscribe();
     }
   }

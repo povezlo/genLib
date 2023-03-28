@@ -1,4 +1,4 @@
-import { 
+import {
   AfterViewInit,
   Component,
   ElementRef,
@@ -31,8 +31,8 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   @Input() title?: string;
   @Input() unmuted = false;
   @Input() autoplay = false;
-  
-  @ViewChild('videoPlayer') videoElementRef!: ElementRef; 
+
+  @ViewChild('videoPlayer') videoElementRef!: ElementRef;
   @ViewChild(MatTooltip) tooltip!: MatTooltip;
 
   videoPlayer!: HTMLVideoElement;
@@ -41,7 +41,7 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
 
   private hls = new Hls();
   private defaultPlaybackRate = 0;
-  
+
   constructor(private playerService: VideoLessonsPlayerService, private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {

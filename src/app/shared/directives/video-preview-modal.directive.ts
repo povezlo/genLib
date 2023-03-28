@@ -1,11 +1,11 @@
-import { 
+import {
   ComponentRef,
   Directive,
   HostListener,
   Input,
   ViewContainerRef
   } from '@angular/core';
-  
+
 import { VideoPreviewPopupComponent } from '../../course-preview-page/components';
 import { ICourseVideoPreview } from '../interfaces';
 
@@ -45,4 +45,4 @@ export class VideoPreviewModalDirective {
       this.componentRef = null;
     }
   }
-}
+  }
